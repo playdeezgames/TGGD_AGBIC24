@@ -8,8 +8,30 @@ function M.new_game()
 	data = {}
 	M.set_wait_time(0)
 	M.initialize_satiety()
+	M.initialize_health()
 	M.clear_messages()
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
+end
+
+function M.initialize_health()
+	M.set_maximum_health(100)
+	M.set_health(M.get_maximum_health())
+end
+
+function M.set_maximum_health(value)
+	data.maximum_health = value
+end
+
+function M.get_maximum_health()
+	return data.maximum_health
+end
+
+function M.set_health(value)
+	data.health = vmath.clamp(value, 0, M.get_maximum_health())
+end
+
+function M.get_health()
+	return data.health
 end
 
 function M.initialize_satiety()
@@ -67,6 +89,11 @@ function M.perform_hunger()
 		M.add_message("-1 SATIETY")
 		M.set_satiety(M.get_satiety()-1)
 		M.add_message("SATIETY: "..M.get_satiety().."/"..M.get_maximum_satiety())
+	elseif M.get_health()>0 then
+		M.add_message("YER STARVING!")
+		M.add_message("-1 HEALTH")
+		M.set_health(M.get_health()-1)
+		M.add_message("HEALTH:"..M.get_health().."/"..M.get_maximum_health())
 	end
 end
 
