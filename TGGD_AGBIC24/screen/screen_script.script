@@ -1,0 +1,39 @@
+local display_buffer = require("display_buffer.display_buffer")
+local game = require("game.game")
+local commands = require("game.commands")
+
+local TILEMAP_URL = "/screen#screen_tilemap"
+local TILEMAP_LAYER = "only"
+
+
+
+function init(self)
+	math.randomseed(100000 * (socket.gettime() % 1))
+	msg.post(".", "acquire_input_focus")
+end
+
+function final(self)
+end
+
+function update(self, dt)
+	game.update(dt)
+	for column = 1, display_buffer.COLUMNS do
+		for row = 1, display_buffer.ROWS do
+			tilemap.set_tile(TILEMAP_URL, TILEMAP_LAYER, column, row, display_buffer.get_cell(column, row))
+		end
+	end
+end
+
+function on_message(self, message_id, message, sender)
+end
+
+function on_input(self, action_id, action)
+	for _,command in ipairs(commands.ALL) do
+		if action_id==hash(command) and action.pressed then
+			game.handle_command(command)
+		end
+	end
+end
+
+function on_reload(self)
+end

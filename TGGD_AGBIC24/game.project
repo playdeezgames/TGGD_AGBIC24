@@ -1,0 +1,29 @@
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[script]
+shared_state = 1
+
+[display]
+width = 640
+height = 480
+high_dpi = 1
+
+[android]
+input_method = HiddenInputField
+
+[html5]
+scale_mode = fit
+cssfile = /builtins/manifests/web/dark_theme.css
+show_made_with_defold = 0
+show_fullscreen_button = 0
+
+[project]
+title = TGGD_AGBIC24
+publisher = The Grumpy GameDev
+developer = The Grumpy GameDev
+
+[graphics]
+default_texture_min_filter = nearest
+default_texture_mag_filter = nearest
+

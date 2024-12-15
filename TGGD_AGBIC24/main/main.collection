@@ -1,0 +1,14 @@
+name: "main"
+instances {
+  id: "screen"
+  prototype: "/screen/screen.go"
+  position {
+    x: 64.0
+    y: 48.0
+  }
+  scale3 {
+    x: 2.0
+    y: 2.0
+  }
+}
+scale_along_z: 0
