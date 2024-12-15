@@ -7,8 +7,26 @@ local data = {}
 function M.new_game()
 	data = {}
 	M.set_wait_time(0)
+	M.initialize_satiety()
 	M.clear_messages()
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
+end
+
+function M.initialize_satiety()
+	M.set_maximum_satiety(100)
+	M.set_satiety(M.get_maximum_satiety())
+end
+
+function M.set_maximum_satiety(value)
+	data.maximum_satiety=value
+end
+
+function M.get_maximum_satiety()
+	return data.maximum_satiety
+end
+
+function M.set_satiety(value)
+	data.satiety = vmath.clamp(value,0, M.get_maximum_satiety())
 end
 
 function M.set_wait_time(value)
@@ -40,7 +58,20 @@ function M.wait_for_bus()
 	else
 		M.add_message("YOU HAVE BEEN WAITING FOR "..M.get_wait_time().." MINUTES")
 	end
+	M.perform_hunger()
 	return states.IN_PLAY
+end
+
+function M.perform_hunger()
+	if M.get_satiety()>0 then
+		M.add_message("-1 SATIETY")
+		M.set_satiety(M.get_satiety()-1)
+		M.add_message("SATIETY: "..M.get_satiety().."/"..M.get_maximum_satiety())
+	end
+end
+
+function M.get_satiety()
+	return data.satiety
 end
 
 return M
