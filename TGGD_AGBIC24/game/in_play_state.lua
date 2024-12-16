@@ -13,6 +13,10 @@ function M.update(dt)
 	display_buffer.write_line(" ", 1)
 	display_buffer.write("1)", 2)
 	display_buffer.write_line("WAIT FOR BUS", 1)
+	display_buffer.write("2)", 2)
+	display_buffer.write_line("FORAGE", 1)
+	display_buffer.write("3)", 2)
+	display_buffer.write_line("INVENTORY", 1)
 	display_buffer.write("0)", 2)
 	display_buffer.write_line("QUIT", 1)
 	return states.IN_PLAY
@@ -23,6 +27,10 @@ function M.handle_command(command)
 		return states.CONFIRM_QUIT
 	elseif command == commands.ONE then
 		return data.wait_for_bus()
+	elseif command == commands.TWO then
+		return data.forage()
+	elseif command == commands.THREE then
+		return states.INVENTORY
 	end
 	return states.IN_PLAY
 end

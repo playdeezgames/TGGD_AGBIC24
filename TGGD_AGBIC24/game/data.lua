@@ -1,4 +1,5 @@
 local states = require("game.states")
+local foraging = require("game.foraging")
 
 local M = {}
 
@@ -9,6 +10,8 @@ function M.new_game()
 	M.set_wait_time(0)
 	M.initialize_satiety()
 	M.initialize_health()
+	M.set_litter(0)
+	M.set_sammiches(0)
 	M.clear_messages()
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
 end
@@ -75,17 +78,9 @@ function M.wait_for_bus()
 	M.clear_messages()
 	M.add_message("YOU WAIT FOR THE BUS")
 	M.set_wait_time(M.get_wait_time()+1)
-	if M.get_wait_time() == 1 then
-		M.add_message("YOU HAVE BEEN WAITING FOR "..M.get_wait_time().." MINUTE")
-	else
-		M.add_message("YOU HAVE BEEN WAITING FOR "..M.get_wait_time().." MINUTES")
-	end
+	M.report_wait_time()
 	M.perform_hunger()
-	if M.is_dead() then
-		return states.DEAD
-	else
-		return states.IN_PLAY
-	end
+	return M.get_next_state()
 end
 
 function M.is_dead()
@@ -107,6 +102,61 @@ end
 
 function M.get_satiety()
 	return data.satiety
+end
+
+function M.report_wait_time()
+	if M.get_wait_time() == 1 then
+		M.add_message("YOU HAVE BEEN WAITING FOR "..M.get_wait_time().." MINUTE")
+	else
+		M.add_message("YOU HAVE BEEN WAITING FOR "..M.get_wait_time().." MINUTES")
+	end
+end
+
+function M.forage()
+	M.clear_messages()
+	M.add_message("YOU FORAGE WHILE YOU WAIT")
+	foraging.forage(M)
+	M.set_wait_time(M.get_wait_time()+1)
+	M.report_wait_time()
+	M.perform_hunger()
+	return M.get_next_state()
+end
+
+function M.get_next_state()
+	if M.is_dead() then
+		return states.DEAD
+	else
+		return states.IN_PLAY
+	end
+end
+
+function M.set_litter(value)
+	data.litter = math.max(0, value)
+end
+
+function M.get_litter()
+	return data.litter
+end
+
+function M.set_sammiches(value)
+	data.sammiches = math.max(0, value)
+end
+
+function M.get_sammiches()
+	return data.sammiches
+end
+
+function M.eat_sammich()
+	M.clear_messages()
+	if M.get_sammiches()>0 then
+		M.add_message("YOU EAT A SAMMICH")
+		M.set_sammiches(M.get_sammiches()-1)
+		M.set_satiety(M.get_satiety()+10)
+		M.add_message("SATIETY: "..M.get_satiety().."/"..M.get_maximum_satiety())
+		return states.IN_PLAY
+	else
+		assert(false, "the player doesnt have any sammiches, so how did we get here?")
+	end
 end
 
 return M
