@@ -81,7 +81,15 @@ function M.wait_for_bus()
 		M.add_message("YOU HAVE BEEN WAITING FOR "..M.get_wait_time().." MINUTES")
 	end
 	M.perform_hunger()
-	return states.IN_PLAY
+	if M.is_dead() then
+		return states.DEAD
+	else
+		return states.IN_PLAY
+	end
+end
+
+function M.is_dead()
+	return M.get_health() == 0
 end
 
 function M.perform_hunger()
