@@ -10,6 +10,7 @@ game_states[states.IN_PLAY] = require("game.in_play_state")
 game_states[states.CONFIRM_QUIT] = require("game.confirm_quit_state")
 game_states[states.DEAD] = require("game.dead_state")
 game_states[states.INVENTORY] = require("game.inventory_state")
+game_states[states.FIGHT] = require("game.fight_state")
 
 
 function M.update(dt)
