@@ -7,7 +7,7 @@ local M = {}
 
 function M.update(dt)
 	display_buffer.clear(97)
-	display_buffer.write_line("HOW AM I STILL WAITING FOR THE  BUS??", 2)
+	display_buffer.write_line("HOW AM I STILL WAITING FOR THE  BUS?", 2)
 	display_buffer.write_line("A PRODUCTION OF THEGRUMPYGAMEDEV", 1)
 	display_buffer.write_line("FOR A GAME BY ITS COVER 2024", 1)
 	display_buffer.write_line("DECEMBER 2024", 1)
