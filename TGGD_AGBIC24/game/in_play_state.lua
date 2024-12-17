@@ -17,6 +17,8 @@ function M.update(dt)
 	display_buffer.write_line("FORAGE", 1)
 	display_buffer.write("3)", 2)
 	display_buffer.write_line("INVENTORY", 1)
+	display_buffer.write("4)", 2)
+	display_buffer.write_line("STATUS", 1)
 	display_buffer.write("0)", 2)
 	display_buffer.write_line("QUIT", 1)
 	return states.IN_PLAY
@@ -31,6 +33,8 @@ function M.handle_command(command)
 		return data.forage()
 	elseif command == commands.THREE then
 		return states.INVENTORY
+	elseif command == commands.FOUR then
+		return states.STATUS
 	end
 	return states.IN_PLAY
 end
