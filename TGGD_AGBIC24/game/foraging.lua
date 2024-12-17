@@ -3,6 +3,7 @@ local M = {}
 M.NOTHING = "NOTHING"
 M.LITTER = "LITTER"
 M.SAMMICH = "SAMMICH"
+M.BANDAGE = "BANDAGE"
 
 local forage_table = {}
 forage_table[M.NOTHING] = {
@@ -25,6 +26,14 @@ forage_table[M.SAMMICH] = {
         data.add_message("YOU FIND A HALF-EATEN SAMMICH!")
         data.set_sammiches(data.get_sammiches() + 1)
         data.add_message("YOU HAVE "..data.get_sammiches().." SAMMICH(ES)")
+    end
+}
+forage_table[M.BANDAGE] = {
+    weight=3,
+    handle=function(data)
+        data.add_message("YOU FIND A USED BANDAGE!")
+        data.set_bandages(data.get_bandages() + 1)
+        data.add_message("YOU HAVE "..data.get_bandages().." BANDAGE(S)")
     end
 }
 

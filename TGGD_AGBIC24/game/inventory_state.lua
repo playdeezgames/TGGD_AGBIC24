@@ -17,6 +17,10 @@ function M.update(dt)
         display_buffer.write_line(data.get_sammiches().." HALF-EATEN SAMMICH(ES)", 1)
         has_inventory = true
     end
+    if data.get_bandages() > 0 then
+        display_buffer.write_line(data.get_bandages().." USED BANDAGE(S)", 1)
+        has_inventory = true
+    end
     if not has_inventory then
         display_buffer.write_line("NOTHING!", 1)
     end
@@ -24,6 +28,10 @@ function M.update(dt)
     if data.get_sammiches() > 0 then
         display_buffer.write("1)", 2)
         display_buffer.write_line("EAT SAMMICH", 1)
+    end
+    if data.get_bandages() > 0 then
+        display_buffer.write("2)", 2)
+        display_buffer.write_line("(RE)USE BANDAGE", 1)
     end
 	display_buffer.write("0)", 2)
 	display_buffer.write_line("DONE", 1)
@@ -35,6 +43,8 @@ function M.handle_command(command)
 		return states.IN_PLAY
     elseif command == commands.ONE and data.get_sammiches() > 0 then
         return data.eat_sammich()
+    elseif command == commands.TWO and data.get_bandages() > 0 then
+        return data.use_bandage()
     end
 	return states.INVENTORY
 end

@@ -12,6 +12,7 @@ function M.new_game()
 	M.initialize_health()
 	M.set_litter(0)
 	M.set_sammiches(0)
+	M.set_bandages(0)
 	M.clear_messages()
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
 end
@@ -156,6 +157,27 @@ function M.eat_sammich()
 		return states.IN_PLAY
 	else
 		assert(false, "the player doesnt have any sammiches, so how did we get here?")
+	end
+end
+
+function M.set_bandages(value)
+	data.bandages=math.max(0, value)
+end
+
+function M.get_bandages()
+	return data.bandages
+end
+
+function M.use_bandage()
+	M.clear_messages()
+	if M.get_bandages()>0 then
+		M.add_message("YOU (RE)USE A BANDAGE")
+		M.set_bandages(M.get_bandages()-1)
+		M.set_health(M.get_health()+10)
+		M.add_message("HEALTH: "..M.get_health().."/"..M.get_maximum_health())
+		return states.IN_PLAY
+	else
+		assert(false, "the player doesnt have any bandages, so how did we get here?")
 	end
 end
 
