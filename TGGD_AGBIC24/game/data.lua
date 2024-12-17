@@ -1,5 +1,6 @@
 local states = require("game.states")
 local foraging = require("game.foraging")
+local encounter = require("game.encounter")
 
 local M = {}
 
@@ -18,9 +19,18 @@ function M.new_game()
 	M.set_zombie_health(0)
 	M.set_attack(5)
 	M.set_defend(5)
+	M.set_money(0)
 	M.clear_messages()
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
 end
+
+function M.set_money(value)
+	data.money = math.max(0, value)
+end
+
+function M.get_money()
+	return data.money
+end	
 
 function M.set_attack(value)
 	data.attack=math.max(0,value)
@@ -124,16 +134,7 @@ function M.perform_wait()
 	else
 		M.add_message("YOU HAVE BEEN WAITING FOR "..M.get_wait_time().." MINUTES")
 	end
-	if math.random(1,20) == 1 then
-		M.spawn_zombie()
-	end
-end
-
-function M.spawn_zombie()
-	M.set_zombie_health(25)
-	M.set_zombie_attack(10)
-	M.set_zombie_defend(10)
-	M.add_message("A ZOMBIE APPROACHES YOU, AND NOWYOU MUST FIGHT!")
+	encounter.check_for_encounter(M)
 end
 
 function M.set_zombie_attack(value)

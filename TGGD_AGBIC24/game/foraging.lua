@@ -4,6 +4,7 @@ M.NOTHING = "NOTHING"
 M.LITTER = "LITTER"
 M.SAMMICH = "SAMMICH"
 M.BANDAGE = "BANDAGE"
+M.CHANGE = "CHANGE"
 
 local forage_table = {}
 forage_table[M.NOTHING] = {
@@ -34,6 +35,15 @@ forage_table[M.BANDAGE] = {
         data.add_message("YOU FIND A USED BANDAGE!")
         data.set_bandages(data.get_bandages() + 1)
         data.add_message("YOU HAVE "..data.get_bandages().." BANDAGE(S)")
+    end
+}
+forage_table[M.CHANGE] = {
+    weight=5,
+    handle=function(data)
+        local amount = math.random(1,25)
+        data.add_message("YOU FIND "..amount.." CENT(S) IN LOOSE CHANGE!")
+        data.set_money(data.get_money() + amount)
+        data.add_message("YOU HAVE "..data.get_money().." CENT(S)")
     end
 }
 

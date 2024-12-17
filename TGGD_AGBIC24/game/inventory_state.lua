@@ -9,6 +9,10 @@ function M.update(dt)
 	display_buffer.clear(97)
 	display_buffer.write_line("INVENTORY:", 2)
     local has_inventory = false
+    if data.get_money() > 0 then
+        display_buffer.write_line(data.get_money().." CENT(S) IN LOOSE CHANGE", 1)
+        has_inventory = true
+    end
     if data.get_litter() > 0 then
         display_buffer.write_line(data.get_litter().." PIECE(S) OF LITTER", 1)
         has_inventory = true
