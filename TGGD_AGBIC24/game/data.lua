@@ -78,8 +78,7 @@ end
 function M.wait_for_bus()
 	M.clear_messages()
 	M.add_message("YOU WAIT FOR THE BUS")
-	M.set_wait_time(M.get_wait_time()+1)
-	M.report_wait_time()
+	M.perform_wait()
 	M.perform_hunger()
 	return M.get_next_state()
 end
@@ -105,7 +104,8 @@ function M.get_satiety()
 	return data.satiety
 end
 
-function M.report_wait_time()
+function M.perform_wait()
+	M.set_wait_time(M.get_wait_time()+1)
 	if M.get_wait_time() == 1 then
 		M.add_message("YOU HAVE BEEN WAITING FOR "..M.get_wait_time().." MINUTE")
 	else
@@ -117,8 +117,7 @@ function M.forage()
 	M.clear_messages()
 	M.add_message("YOU FORAGE WHILE YOU WAIT")
 	foraging.forage(M)
-	M.set_wait_time(M.get_wait_time()+1)
-	M.report_wait_time()
+	M.perform_wait()
 	M.perform_hunger()
 	return M.get_next_state()
 end
