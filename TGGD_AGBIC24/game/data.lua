@@ -21,9 +21,18 @@ function M.new_game()
 	M.set_defend(10)
 	M.set_virtue(0)
 	M.set_money(0)
+	M.set_flowers(0)
 	M.set_hippie(false)
 	M.clear_messages()
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
+end
+
+function M.set_flowers(value)
+	data.flowers = math.max(0, value)
+end
+
+function M.get_flowers()
+	return data.flowers
 end
 
 function M.set_hippie(value)
@@ -315,12 +324,30 @@ end
 function M.accept_hippie()
 	M.clear_messages()
 	M.add_message("YOU GIVE THE HIPPIER ALL YER LITTER, AND SUDDENLY FEEL A LOT BETTER ABOUT YER CARBON FOOTPRINT.")
-	M.add_message("-"..M.get_litter().."  LITTER")
-	M.add_message("+"..M.get_litter().."  VIRTUE")
-	M.set_virtue(M.get_virtue()+M.get_litter())
+	M.add_message("THE HIPPIE GIVES YOU A FLOWER.")
+	M.add_message("+1 FLOWER")
+	M.add_message("-"..M.get_litter().." LITTER")
+	M.add_message("+"..M.get_litter().." VIRTUE")
+	M.set_virtue(M.get_virtue() + M.get_litter())
+	M.set_flowers(M.get_flowers() + 1)
 	M.set_litter(0)
 	M.set_hippie(false)
-	return states.IN_PLAY
+	return M.get_next_state()
+end
+
+function M.smell_flower()
+	M.clear_messages()
+	M.add_message("IT SMELLS FLOWERY.")
+	return M.get_next_state()
+end
+
+function M.use_flower()
+	M.clear_messages()
+	M.add_message("THAT DOESN'T HELP. DUNNO WHAT YER THINKING.")
+	M.set_flowers(M.get_flowers() - 1)
+	M.add_message("-1 FLOWER")
+	M.counter_attack()
+	return M.get_next_state()
 end
 
 return M

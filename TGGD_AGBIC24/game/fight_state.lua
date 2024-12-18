@@ -13,12 +13,18 @@ function M.update(dt)
 	display_buffer.write_line(" ", 1)
 	display_buffer.write("1)", 2)
 	display_buffer.write_line("ATTACK!", 1)
+	if data.get_flowers()>0 then
+		display_buffer.write("2)", 2)
+		display_buffer.write_line("USE FLOWER!", 1)
+	end
 	return states.FIGHT
 end
 
 function M.handle_command(command)
 	if command == commands.ONE then
 		return data.attack()
+	elseif command == commands.TWO and data.get_flowers()>0 then
+		return data.use_flower()
 	end
 	return states.FIGHT
 end

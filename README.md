@@ -1,13 +1,11 @@
 # TGGD_AGBIC24
 
-- Weapon?
-- Weapon Durability?
+- Weapon - empty beer bottle, 
+- weapon durability - may break to form broken beer bottle, which does even more damage, which may break again and become useless
 - Loose Change
-- Beggar
+- Beggar(give loose change for virtue, gain empty beer bottle)
 - Proselytizer
 - Holy Water(donate to proselytizer)
 - Traveling half-eaten sammich vendor
-- Recycling hippie, trades litter for flowers. Flowers smell nice.
-- use Holy Water on zombie (kill zombie)
-- use flower on zombie (does nothing)
-- virtue: give money to beggar, proselytizer, or hippie, works as armor against zombie attacks.
+- use Holy Water on zombie (explodes zombie, leaves zombie guts)
+- zombie guts distracts zombie from attacking

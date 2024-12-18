@@ -25,6 +25,10 @@ function M.update(dt)
         display_buffer.write_line(data.get_bandages().." USED BANDAGE(S)", 1)
         has_inventory = true
     end
+    if data.get_flowers() > 0 then
+        display_buffer.write_line(data.get_flowers().." FLOWERS", 1)
+        has_inventory = true
+    end
     if not has_inventory then
         display_buffer.write_line("NOTHING!", 1)
     end
@@ -36,6 +40,10 @@ function M.update(dt)
     if data.get_bandages() > 0 then
         display_buffer.write("2)", 2)
         display_buffer.write_line("(RE)USE BANDAGE", 1)
+    end
+    if data.get_flowers() > 0 then
+        display_buffer.write("3)", 2)
+        display_buffer.write_line("SMELL FLOWER", 1)
     end
 	display_buffer.write("0)", 2)
 	display_buffer.write_line("DONE", 1)
@@ -49,6 +57,8 @@ function M.handle_command(command)
         return data.eat_sammich()
     elseif command == commands.TWO and data.get_bandages() > 0 then
         return data.use_bandage()
+    elseif command == commands.THREE and data.get_flowers() > 0 then
+        return data.smell_flower()
     end
 	return states.INVENTORY
 end
