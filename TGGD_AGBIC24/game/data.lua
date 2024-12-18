@@ -19,9 +19,27 @@ function M.new_game()
 	M.set_zombie_health(0)
 	M.set_attack(10)
 	M.set_defend(10)
+	M.set_virtue(0)
 	M.set_money(0)
+	M.set_hippie(false)
 	M.clear_messages()
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
+end
+
+function M.set_hippie(value)
+	data.hippie = value
+end
+
+function M.get_hippie()
+	return data.hippie
+end
+
+function M.set_virtue(value)
+	data.virtue = math.max(0,value)
+end
+
+function M.get_virtue()
+	return data.virtue
 end
 
 function M.set_money(value)
@@ -163,6 +181,8 @@ function M.get_next_state()
 		return states.DEAD
 	elseif not M.is_zombie_dead() then
 		return states.FIGHT
+	elseif M.get_hippie() then
+		return states.HIPPIE
 	else
 		return states.IN_PLAY
 	end
@@ -251,6 +271,13 @@ function M.counter_attack()
 	local counter_attack_roll = math.max(0,math.random(1,M.get_zombie_attack())-math.random(1,M.get_defend()))
 	if counter_attack_roll > 0 then
 		M.add_message("THE ZOMBIE HITS FOR "..counter_attack_roll.." DAMAGE!")
+		local virtue = math.min(counter_attack_roll, M.get_virtue())
+		if virtue > 0 then
+			M.add_message("YER VIRTUE ABSORBS "..virtue.." DAMAGE!")
+			counter_attack_roll = counter_attack_roll - virtue
+			M.set_virtue(M.get_virtue()-virtue)
+			M.add_message("YOU HAVE "..M.get_virtue().." VIRTUE REMAINING.")
+		end
 		M.set_health(M.get_health()-counter_attack_roll)
 		if M.is_dead() then
 			M.add_message("YER DEAD.")
@@ -276,6 +303,24 @@ end
 
 function M.get_zombie_defend()
 	return data.zombie_defend
+end
+
+function M.deny_hippie()
+	M.clear_messages()
+	M.add_message("YOU TELL THE DIRTY HIPPIE TO POUND SAND.")
+	M.set_hippie(false)
+	return states.IN_PLAY
+end
+
+function M.accept_hippie()
+	M.clear_messages()
+	M.add_message("YOU GIVE THE HIPPIER ALL YER LITTER, AND SUDDENLY FEEL A LOT BETTER ABOUT YER CARBON FOOTPRINT.")
+	M.add_message("-"..M.get_litter().."  LITTER")
+	M.add_message("+"..M.get_litter().."  VIRTUE")
+	M.set_virtue(M.get_virtue()+M.get_litter())
+	M.set_litter(0)
+	M.set_hippie(false)
+	return states.IN_PLAY
 end
 
 return M
