@@ -26,7 +26,11 @@ function M.update(dt)
         has_inventory = true
     end
     if data.get_flowers() > 0 then
-        display_buffer.write_line(data.get_flowers().." FLOWERS", 1)
+        display_buffer.write_line(data.get_flowers().." FLOWER(S)", 1)
+        has_inventory = true
+    end
+    if data.get_beer_bottles() > 0 then
+        display_buffer.write_line(data.get_beer_bottles().." EMPTY BEER BOTTLES", 1)
         has_inventory = true
     end
     if not has_inventory then

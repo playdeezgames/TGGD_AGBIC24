@@ -17,17 +17,26 @@ function M.new_game()
 	M.set_zombie_attack(0)
 	M.set_zombie_defend(0)
 	M.set_zombie_health(0)
-	M.set_attack(10)
+	M.set_base_attack(10)
 	M.set_defend(10)
-	M.set_virtue(10)
+	M.set_virtue(0)
 	M.set_money(0)
 	M.set_flowers(0)
 	M.set_hippie(false)
 	M.set_vendor(false)
 	M.set_beggar(false)
+	M.set_beer_bottles(0)
 	M.clear_messages()
 	M.set_sammich_price(25)
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
+end
+
+function M.set_beer_bottles(value)
+	data.beer_bottles = math.max(0,value)
+end
+
+function M.get_beer_bottles()
+	return data.beer_bottles
 end
 
 function M.can_buy_sammich()
@@ -103,7 +112,7 @@ function M.get_money()
 	return data.money
 end	
 
-function M.set_attack(value)
+function M.set_base_attack(value)
 	data.attack=math.max(0,value)
 end
 
@@ -303,9 +312,30 @@ function M.get_zombie_health()
 	return data.zombie_health
 end
 
+function M.get_attack()
+	local result = M.get_base_attack()
+	if M.get_beer_bottles()>0 then
+		result = result * 2
+	end
+	return result
+end
+
+function M.check_breakage()
+	if M.get_beer_bottles()>0 then
+		if math.random(1,5)==1 then
+			M.add_message("THE EMPTY BEER BOTTLE BREAKS!")
+			M.set_beer_bottles(M.get_beer_bottles()-1)
+		end
+	end
+end
+
 function M.attack()
 	M.clear_messages()
-	M.add_message("YOU ATTACK THE ZOMBIE!")
+	local weapon = "YER FISTS"
+	if M.get_beer_bottles()>0 then
+		weapon = "AN EMPTY BEER BOTTLE"
+	end
+	M.add_message("YOU ATTACK THE ZOMBIE WITH "..weapon.."!")
 	local attack_roll = math.max(0,math.random(1,M.get_attack())-math.random(1,M.get_zombie_defend()))
 	if attack_roll > 0 then
 		M.add_message("YOU HIT FOR "..attack_roll.." DAMAGE!")
@@ -316,6 +346,7 @@ function M.attack()
 			M.add_message("THE ZOMBIE HAS "..M.get_zombie_health().." HEALTH LEFT!")
 			M.counter_attack()
 		end
+		M.check_breakage()
 	else
 		M.add_message("YOU MISS!")
 		M.counter_attack()
@@ -346,7 +377,7 @@ function M.counter_attack()
 	end
 end
 
-function M.get_attack()
+function M.get_base_attack()
 	return data.attack
 end
 
@@ -371,7 +402,7 @@ end
 
 function M.accept_hippie()
 	M.clear_messages()
-	M.add_message("YOU GIVE THE HIPPIER ALL YER LITTER, AND SUDDENLY FEEL A LOT BETTER ABOUT YER CARBON FOOTPRINT.")
+	M.add_message("YOU GIVE THE HIPPIE ALL YER LITTER, AND SUDDENLY FEEL A LOT BETTER ABOUT YER CARBON FOOTPRINT.")
 	M.add_message("THE HIPPIE GIVES YOU A FLOWER.")
 	M.add_message("+1 FLOWER")
 	M.add_message("-"..M.get_litter().." LITTER")
@@ -405,6 +436,11 @@ function M.accept_beggar()
 	M.add_message("+"..M.get_money().." VIRTUE")
 	M.set_virtue(M.get_virtue()+M.get_money())
 	M.add_message("YOU HAVE "..M.get_virtue().." VIRTUE")
+	if math.random(1,100) <= M.get_money() then
+		M.add_message("THE BEGGAR GIVES YOU AN EMPTY BEER BOTTLE")
+		M.set_beer_bottles(M.get_beer_bottles()+1)
+		M.add_message("YOU HAVE "..M.get_beer_bottles().." BEER BOTTLE(S)")
+	end
 	M.set_money(0)
 	M.set_beggar(false)
 	return M.get_next_state()

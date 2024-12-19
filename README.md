@@ -1,7 +1,5 @@
 # TGGD_AGBIC24
 
-- Beggar(give loose change for virtue, gain empty beer bottle)
-- Weapon - empty beer bottle, 
 - weapon durability - may break to form broken beer bottle, which does even more damage, which may break again and become useless
 - Proselytizer
 - Holy Water(donate to proselytizer)
