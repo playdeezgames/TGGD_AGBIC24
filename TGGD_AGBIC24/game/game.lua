@@ -14,6 +14,7 @@ game_states[states.FIGHT] = require("game.fight_state")
 game_states[states.STATUS] = require("game.status_state")
 game_states[states.HIPPIE] = require("game.hippie_state")
 game_states[states.VENDOR] = require("game.vendor_state")
+game_states[states.BEGGAR] = require("game.beggar_state")
 
 
 function M.update(dt)

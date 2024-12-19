@@ -19,11 +19,12 @@ function M.new_game()
 	M.set_zombie_health(0)
 	M.set_attack(10)
 	M.set_defend(10)
-	M.set_virtue(0)
+	M.set_virtue(10)
 	M.set_money(0)
 	M.set_flowers(0)
 	M.set_hippie(false)
 	M.set_vendor(false)
+	M.set_beggar(false)
 	M.clear_messages()
 	M.set_sammich_price(25)
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
@@ -53,6 +54,13 @@ function M.deny_vendor()
 	M.add_message("THE VENDOR LEAVES.")
 	M.set_vendor(false)
 	return M.get_next_state()
+end
+
+function M.set_beggar(value)
+	data.beggar = value
+end
+function M.get_beggar()
+	return data.beggar
 end
 
 function M.set_vendor(value)
@@ -230,6 +238,8 @@ function M.get_next_state()
 		return states.HIPPIE
 	elseif M.get_vendor() then
 		return states.VENDOR
+	elseif M.get_beggar() then
+		return states.BEGGAR
 	else
 		return states.IN_PLAY
 	end
@@ -385,6 +395,25 @@ function M.use_flower()
 	M.set_flowers(M.get_flowers() - 1)
 	M.add_message("-1 FLOWER")
 	M.counter_attack()
+	return M.get_next_state()
+end
+
+function M.accept_beggar()
+	M.clear_messages()
+	M.add_message("YOU GIVE THE BEGGAR ALL YER LOOSE CHANGE.")
+	M.add_message("-"..M.get_money().." CENT(S)")
+	M.add_message("+"..M.get_money().." VIRTUE")
+	M.set_virtue(M.get_virtue()+M.get_money())
+	M.add_message("YOU HAVE "..M.get_virtue().." VIRTUE")
+	M.set_money(0)
+	M.set_beggar(false)
+	return M.get_next_state()
+end
+
+function M.deny_beggar()
+	M.clear_messages()
+	M.add_message("THE BEGGAR LEAVES, GIVING YOU A DIRTY LOOK.")
+	M.set_beggar(false)
 	return M.get_next_state()
 end
 

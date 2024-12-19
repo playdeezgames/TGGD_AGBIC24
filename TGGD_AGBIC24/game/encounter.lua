@@ -6,6 +6,7 @@ M.BEGGAR = "BEGGAR"
 M.PROSELYTIZER = "PROSELYTIZER"
 M.HIPPIE = "HIPPIE"
 M.VENDOR = "VENDOR"
+M.BEGGAR = "BEGGAR"
 
 local encounter_table = {}
 encounter_table[M.NOTHING]={
@@ -35,7 +36,14 @@ encounter_table[M.VENDOR]={
     weight=1,
     handle=function(data)
         data.set_vendor(true)
-        data.add_message("A VENDOR APPROACHES SELLING HALF-EATEN SAMMICHES FOR 25 CENTS EACH!")
+        data.add_message("A VENDOR APPROACHES SELLING HALF-EATEN SAMMICHES FOR "..data.get_sammich_price().." CENTS EACH!")
+    end
+}
+encounter_table[M.BEGGAR]={
+    weight=1,
+    handle=function(data)
+        data.set_beggar(true)
+        data.add_message("A BEGGAR APPROACHES YOU, ASKING YOU TO SPARE SOME CHANGE.")
     end
 }
 
