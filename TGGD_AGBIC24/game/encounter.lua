@@ -5,6 +5,7 @@ M.ZOMBIE = "ZOMBIE"
 M.BEGGAR = "BEGGAR"
 M.PROSELYTIZER = "PROSELYTIZER"
 M.HIPPIE = "HIPPIE"
+M.VENDOR = "VENDOR"
 
 local encounter_table = {}
 encounter_table[M.NOTHING]={
@@ -14,7 +15,7 @@ encounter_table[M.NOTHING]={
     end
 }
 encounter_table[M.ZOMBIE]={
-    weight=2,
+    weight=1,
     handle=function(data)
         data.set_zombie_health(25)
         data.set_zombie_attack(10)
@@ -28,6 +29,13 @@ encounter_table[M.HIPPIE]={
         data.set_hippie(true)
         data.add_message("YOU ARE APPROACHED BY A TREE-HUGGIN' HIPPIE!")
         data.add_message("HE'LL GIVE YOU A SMELLY HUG IF YOU GIVE HIM LITTER!")
+    end
+}
+encounter_table[M.VENDOR]={
+    weight=1,
+    handle=function(data)
+        data.set_vendor(true)
+        data.add_message("A VENDOR APPROACHES SELLING HALF-EATEN SAMMICHES FOR 25 CENTS EACH!")
     end
 }
 

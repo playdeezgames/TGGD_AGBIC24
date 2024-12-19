@@ -23,8 +23,44 @@ function M.new_game()
 	M.set_money(0)
 	M.set_flowers(0)
 	M.set_hippie(false)
+	M.set_vendor(false)
 	M.clear_messages()
+	M.set_sammich_price(25)
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
+end
+
+function M.can_buy_sammich()
+	return M.get_money()>=M.get_sammich_price()
+end
+function M.set_sammich_price(value)
+	data.sammich_price = math.max(0, value)
+end
+function M.get_sammich_price()
+	return data.sammich_price
+end
+function M.accept_vendor()
+	M.clear_messages()
+	M.add_message("-"..M.get_sammich_price().." CENTS")
+	M.add_message("+1 HALF-EATEN SAMMICH")
+	M.set_money(M.get_money()-M.get_sammich_price())
+	M.set_sammiches(M.get_sammiches()+1)
+	M.add_message("THANK YOU FOR YER BUSINESS!")
+	return M.get_next_state()
+end
+function M.deny_vendor()
+	M.clear_messages()
+	M.add_message("WELL, MAYBE NEXT TIME!")
+	M.add_message("THE VENDOR LEAVES.")
+	M.set_vendor(false)
+	return M.get_next_state()
+end
+
+function M.set_vendor(value)
+	data.vendor = value
+end
+
+function M.get_vendor()
+	return data.vendor
 end
 
 function M.set_flowers(value)
@@ -192,6 +228,8 @@ function M.get_next_state()
 		return states.FIGHT
 	elseif M.get_hippie() then
 		return states.HIPPIE
+	elseif M.get_vendor() then
+		return states.VENDOR
 	else
 		return states.IN_PLAY
 	end
