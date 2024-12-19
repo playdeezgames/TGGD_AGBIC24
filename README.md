@@ -5,3 +5,6 @@
 - Holy Water(donate to proselytizer)
 - use Holy Water on zombie (explodes zombie, leaves zombie guts)
 - zombie guts distracts zombie from attacking
+- final score!
+- count zombie kills
+

@@ -4,3 +4,4 @@ wasm-web/
 .vscode/
 bob.jar
 pub-web
+x86_64-win32/
