@@ -1,7 +1,5 @@
 # TGGD_AGBIC24
 
-- count zombie kills
-- final score!
 - Proselytizer
 - Holy Water(donate to proselytizer)
 - use Holy Water on zombie (explodes zombie, leaves zombie guts)

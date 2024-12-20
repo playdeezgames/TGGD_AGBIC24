@@ -14,6 +14,9 @@ function M.update(dt)
     display_buffer.write_line("WEAPON: "..data.get_weapon(), 1)
     display_buffer.write_line("ATTACK STRENGTH: "..data.get_attack(), 1)
     display_buffer.write_line("DEFEND STRENGTH: "..data.get_defend(), 1)
+	if data.get_zombie_kills()>0 then
+		display_buffer.write_line("ZOMBIES KILLED: "..data.get_zombie_kills())
+	end
 	display_buffer.write_line(" ", 1)
 	display_buffer.write("0)", 2)
 	display_buffer.write_line("DONE", 1)

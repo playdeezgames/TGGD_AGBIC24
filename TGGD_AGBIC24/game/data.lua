@@ -29,7 +29,16 @@ function M.new_game()
 	M.set_broken_beer_bottles(0)
 	M.clear_messages()
 	M.set_sammich_price(25)
+	M.set_zombie_kills(0)
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
+end
+
+function M.set_zombie_kills(value)
+	data.zombie_kills = math.max(0,value)
+end
+
+function M.get_zombie_kills()
+	return data.zombie_kills
 end
 
 function M.set_broken_beer_bottles(value)
@@ -366,6 +375,10 @@ function M.get_weapon()
 	return weapon
 end
 
+function M.get_final_score()
+	return 0
+end
+
 function M.attack()
 	M.clear_messages()
 	M.add_message("YOU ATTACK THE ZOMBIE WITH "..M.get_weapon().."!")
@@ -374,6 +387,7 @@ function M.attack()
 		M.add_message("YOU HIT FOR "..attack_roll.." DAMAGE!")
 		M.set_zombie_health(M.get_zombie_health()-attack_roll)
 		if M.is_zombie_dead() then
+			M.set_zombie_kills(M.get_zombie_kills()+1)
 			M.add_message("YOU KILLED THE ZOMBIE!")
 		else
 			M.add_message("THE ZOMBIE HAS "..M.get_zombie_health().." HEALTH LEFT!")

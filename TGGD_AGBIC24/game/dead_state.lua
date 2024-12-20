@@ -8,6 +8,7 @@ local M = {}
 function M.update(dt)
 	display_buffer.clear(97)
 	display_buffer.write_line("YER DEAD!", 2)
+	display_buffer.write_line("FINAL SCORE: "..data.get_final_score(), 2)
 	for _, message in ipairs(data.get_messages()) do
 		display_buffer.write_line(message, 1)
 	end
