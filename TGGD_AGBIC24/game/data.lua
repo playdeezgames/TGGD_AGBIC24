@@ -26,9 +26,28 @@ function M.new_game()
 	M.set_vendor(false)
 	M.set_beggar(false)
 	M.set_beer_bottles(0)
+	M.set_broken_beer_bottles(0)
 	M.clear_messages()
 	M.set_sammich_price(25)
 	M.add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
+end
+
+function M.set_broken_beer_bottles(value)
+	data.broken_beer_bottles = math.max(0, value)
+end
+
+function M.get_broken_beer_bottles()
+	return data.broken_beer_bottles
+end
+
+function M.break_beer_bottle()
+	M.set_beer_bottles(M.get_beer_bottles()-1)
+	M.set_broken_beer_bottles(M.get_broken_beer_bottles()+1)
+	M.clear_messages()
+	M.add_message("YOU BREAK A BEER BOTTLE, MAKING IT A MUCH MORE FORMIDABLE WEAPON.")
+	M.add_message("-1 EMPTY BEER BOTTLE")
+	M.add_message("+1 BROKEN BEER BOTTLE")
+	return M.get_next_state()
 end
 
 function M.set_beer_bottles(value)
@@ -314,28 +333,42 @@ end
 
 function M.get_attack()
 	local result = M.get_base_attack()
-	if M.get_beer_bottles()>0 then
+	if M.get_broken_beer_bottles()>0 then
+		result = result * 3
+	elseif M.get_beer_bottles()>0 then
 		result = result * 2
 	end
 	return result
 end
 
 function M.check_breakage()
-	if M.get_beer_bottles()>0 then
+	if M.get_broken_beer_bottles()>0 then
+		if math.random(1,5)==1 then
+			M.add_message("THE BROKEN BEER BOTTLE SMASHES TO PIECES!")
+			M.set_broken_beer_bottles(M.get_broken_beer_bottles()-1)
+		end
+	elseif M.get_beer_bottles()>0 then
 		if math.random(1,5)==1 then
 			M.add_message("THE EMPTY BEER BOTTLE BREAKS!")
 			M.set_beer_bottles(M.get_beer_bottles()-1)
+			M.set_broken_beer_bottles(M.get_broken_beer_bottles()+1)
 		end
 	end
 end
 
-function M.attack()
-	M.clear_messages()
+function M.get_weapon()
 	local weapon = "YER FISTS"
-	if M.get_beer_bottles()>0 then
+	if M.get_broken_beer_bottles()>0 then
+		weapon = "A BROKEN BEER BOTTLE"
+	elseif M.get_beer_bottles()>0 then
 		weapon = "AN EMPTY BEER BOTTLE"
 	end
-	M.add_message("YOU ATTACK THE ZOMBIE WITH "..weapon.."!")
+	return weapon
+end
+
+function M.attack()
+	M.clear_messages()
+	M.add_message("YOU ATTACK THE ZOMBIE WITH "..M.get_weapon().."!")
 	local attack_roll = math.max(0,math.random(1,M.get_attack())-math.random(1,M.get_zombie_defend()))
 	if attack_roll > 0 then
 		M.add_message("YOU HIT FOR "..attack_roll.." DAMAGE!")

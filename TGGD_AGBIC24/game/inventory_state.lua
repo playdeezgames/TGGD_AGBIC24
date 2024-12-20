@@ -33,6 +33,10 @@ function M.update(dt)
         display_buffer.write_line(data.get_beer_bottles().." EMPTY BEER BOTTLES", 1)
         has_inventory = true
     end
+    if data.get_broken_beer_bottles() > 0 then
+        display_buffer.write_line(data.get_broken_beer_bottles().." BROKEN BEER BOTTLES", 1)
+        has_inventory = true
+    end
     if not has_inventory then
         display_buffer.write_line("NOTHING!", 1)
     end
@@ -49,6 +53,10 @@ function M.update(dt)
         display_buffer.write("3)", 2)
         display_buffer.write_line("SMELL FLOWER", 1)
     end
+    if data.get_beer_bottles() > 0 then
+        display_buffer.write("4)", 2)
+        display_buffer.write_line("BREAK BEER BOTTLE", 1)
+    end
 	display_buffer.write("0)", 2)
 	display_buffer.write_line("DONE", 1)
 	return states.INVENTORY
@@ -63,6 +71,8 @@ function M.handle_command(command)
         return data.use_bandage()
     elseif command == commands.THREE and data.get_flowers() > 0 then
         return data.smell_flower()
+    elseif command == commands.FOUR and data.get_beer_bottles() > 0 then
+        return data.break_beer_bottle()
     end
 	return states.INVENTORY
 end
