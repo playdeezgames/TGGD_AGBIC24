@@ -6,6 +6,7 @@ Encounter :: enum {
 	Hippie,
 	Vendor,
 	Beggar,
+	Proselytizer,
 }
 
 encounter_weights := [Encounter]int {
@@ -14,6 +15,7 @@ encounter_weights := [Encounter]int {
 	.Hippie  = 1,
 	.Vendor  = 1,
 	.Beggar  = 1,
+	.Proselytizer = 1,
 }
 
 check_for_encounter :: proc() {
@@ -34,5 +36,9 @@ check_for_encounter :: proc() {
 	case .Beggar:
 		data.beggar = true
 		add_message("A BEGGAR APPROACHES YOU, ASKING YOU TO SPARE SOME CHANGE.")
+	case .Proselytizer:
+		data.proselytizer = true
+		add_message("A PROSELYTIZER APPROACHES, ASKING IF YOU HAVE HEARD THE GOOD NEWS.")
+		add_message("HOLY WATER IS %d CENTS, AND THE DONATION IS TOTALLY VOLUNTARY!", data.holy_water_price)
 	}
 }

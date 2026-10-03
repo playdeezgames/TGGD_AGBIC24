@@ -18,6 +18,7 @@ game_update :: proc() {
 	case .Hippie:       draw_hippie()
 	case .Vendor:       draw_vendor()
 	case .Beggar:       draw_beggar()
+	case .Proselytizer: draw_proselytizer()
 	}
 }
 
@@ -34,6 +35,7 @@ game_handle_command :: proc(command: Command) {
 	case .Hippie:       current_state = handle_hippie(command)
 	case .Vendor:       current_state = handle_vendor(command)
 	case .Beggar:       current_state = handle_beggar(command)
+	case .Proselytizer: current_state = handle_proselytizer(command)
 	}
 }
 
@@ -177,6 +179,14 @@ draw_inventory :: proc() {
 		write_stat("%d BROKEN BEER BOTTLES", data.broken_beer_bottles)
 		has_inventory = true
 	}
+	if data.holy_water > 0 {
+		write_stat("%d VIAL(S) OF HOLY WATER", data.holy_water)
+		has_inventory = true
+	}
+	if data.zombie_guts > 0 {
+		write_stat("%d PILE(S) OF ZOMBIE GUTS", data.zombie_guts)
+		has_inventory = true
+	}
 	if !has_inventory {
 		display_write_line("NOTHING!")
 	}
@@ -221,6 +231,9 @@ draw_fight :: proc() {
 	if data.flowers > 0 {
 		display_menu_item("2)", "USE FLOWER!")
 	}
+	if data.holy_water > 0 {
+		display_menu_item("3)", "USE HOLY WATER!")
+	}
 }
 
 handle_fight :: proc(command: Command) -> State {
@@ -229,6 +242,8 @@ handle_fight :: proc(command: Command) -> State {
 		return attack()
 	case .Two:
 		if data.flowers > 0 { return use_flower() }
+	case .Three:
+		if data.holy_water > 0 { return use_holy_water() }
 	}
 	return .Fight
 }
@@ -320,4 +335,26 @@ handle_beggar :: proc(command: Command) -> State {
 		if data.money > 0 { return accept_beggar() }
 	}
 	return .Beggar
+}
+
+// Proselytizer
+
+draw_proselytizer :: proc() {
+	write_messages()
+	write_stat("YOU HAVE %d CENTS", data.money)
+	display_write_line(" ")
+	if can_afford_holy_water() {
+		display_menu_item("1)", "I'LL DONATE!")
+	}
+	display_menu_item("0)", "I'M ALREADY SAVED")
+}
+
+handle_proselytizer :: proc(command: Command) -> State {
+	#partial switch command {
+	case .Zero:
+		return deny_proselytizer()
+	case .One:
+		if can_afford_holy_water() { return accept_proselytizer() }
+	}
+	return .Proselytizer
 }

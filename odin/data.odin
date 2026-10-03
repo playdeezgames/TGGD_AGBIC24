@@ -14,6 +14,7 @@ State :: enum {
 	Hippie,
 	Vendor,
 	Beggar,
+	Proselytizer,
 }
 
 Game_Data :: struct {
@@ -37,6 +38,10 @@ Game_Data :: struct {
 	hippie:               bool,
 	vendor:               bool,
 	beggar:               bool,
+	proselytizer:         bool,
+	holy_water:           int,
+	holy_water_price:     int,
+	zombie_guts:          int,
 	beer_bottles:         int,
 	broken_beer_bottles:  int,
 	sammich_price:        int,
@@ -58,6 +63,7 @@ new_game :: proc() {
 	data.attack = 10
 	data.defend = 10
 	data.sammich_price = 25
+	data.holy_water_price = 10
 	add_message("YOU ARRIVE AT THE BUS STOP IN   PLENTY OF TIME TO CATCH YER BUS")
 }
 
@@ -131,6 +137,7 @@ get_next_state :: proc() -> State {
 	case data.hippie:       return .Hippie
 	case data.vendor:       return .Vendor
 	case data.beggar:       return .Beggar
+	case data.proselytizer: return .Proselytizer
 	}
 	return .In_Play
 }
@@ -333,5 +340,46 @@ deny_beggar :: proc() -> State {
 	clear_messages()
 	add_message("THE BEGGAR LEAVES, GIVING YOU A DIRTY LOOK.")
 	data.beggar = false
+	return get_next_state()
+}
+
+// Proselytizer and holy water
+
+can_afford_holy_water :: proc() -> bool {
+	return data.money >= data.holy_water_price
+}
+
+accept_proselytizer :: proc() -> State {
+	clear_messages()
+	add_message("YOU DONATE %d CENTS TO THE CAUSE.", data.holy_water_price)
+	add_message("-%d CENTS", data.holy_water_price)
+	add_message("+1 HOLY WATER")
+	add_message("MAY IT BLESS YOU AND KEEP YOU.")
+	data.money -= data.holy_water_price
+	data.holy_water += 1
+	data.proselytizer = false
+	return get_next_state()
+}
+
+deny_proselytizer :: proc() -> State {
+	clear_messages()
+	add_message("YOU SAY YOU'RE ALREADY SAVED.")
+	add_message("THE PROSELYTIZER LEAVES, PRAYING FOR YOU.")
+	data.proselytizer = false
+	return get_next_state()
+}
+
+use_holy_water :: proc() -> State {
+	clear_messages()
+	assert(data.holy_water > 0, "the player doesnt have any holy water, so how did we get here?")
+	add_message("YOU SPLASH HOLY WATER ON THE ZOMBIE!")
+	data.holy_water -= 1
+	add_message("-1 HOLY WATER")
+	add_message("THE ZOMBIE EXPLODES!")
+	data.zombie_health = 0
+	data.zombie_kills += 1
+	data.zombie_guts += 1
+	add_message("YOU KILLED THE ZOMBIE!")
+	add_message("+1 ZOMBIE GUTS")
 	return get_next_state()
 }

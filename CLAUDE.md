@@ -8,10 +8,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Odin port (`odin/`, in progress — the active codebase)
 
-The goal is a full rewrite of the Defold/Lua game into Odin targeting `js_wasm32`; `TGGD_AGBIC24/` is the reference implementation to stay faithful to (including quirks like hard character-wrapping at 32 columns and hand-padded message strings).
+The goal is a full rewrite of the Defold/Lua game into Odin targeting `js_wasm32`; `TGGD_AGBIC24/` is the reference implementation for the original behaviour (including quirks like hard character-wrapping at 32 columns and hand-padded message strings). The port has since moved past it: new features (proselytizer, holy water, zombie guts, from the README ideas) exist only in the Odin version.
 
 - Build: `odin/build.sh` → `odin/out/` (`bus.wasm` + `odin.js` from the Odin install + `web/index.html` + font PNG). Serve `odin/out` with any static server and open it.
-- Test (native, not js): `cd odin && odin test .` — a randomized playthrough that must reach every state, plus glyph-mapping checks.
+- Test (native, not js): `cd odin && odin test . -define:ODIN_TEST_THREADS=1` (single-threaded: tests share the global `data`; each test calls `begin_test`/`end_test` because the runner gives every test its own allocator; the run leaves a stray `odin` binary that is git-ignored) — a randomized playthrough that must reach every state, plus glyph-mapping checks.
 - One package (`bus`). Everything is platform-independent except `main_js.odin` (`#+build js`), which holds the `step` export, keyboard events (`KeyboardEvent.code` → `Command`), and the `present` foreign call. `game_test.odin` is `#+build !js`.
 - Mapping from Lua: `display.odin` = display_buffer (row 0 is the top; Defold's tilemap is y-up so the Lua cursor started at row 16), `data.odin` = game/data.lua, `states.odin` = all `*_state.lua` (a `draw_*`/`handle_*` pair per `State`), `encounter.odin`/`foraging.odin` = weighted tables (enum-indexed arrays), `rng.odin` = random helpers.
 - Rendering: Odin fills a 32x16 tile-index grid; `web/index.html` implements `present` by blitting 8x12 tiles from `CoCoFontSmall.png` onto a 256x192 canvas (tile index is 1-based, 32 per row; character set 1 = tiles 65..128, set 2 = 1..64).
