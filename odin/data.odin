@@ -363,7 +363,7 @@ accept_proselytizer :: proc() -> State {
 
 deny_proselytizer :: proc() -> State {
 	clear_messages()
-	add_message("YOU SAY YOU'RE ALREADY SAVED.")
+	add_message("YOU SAY YER ALREADY SAVED.")
 	add_message("THE PROSELYTIZER LEAVES, PRAYING FOR YOU.")
 	data.proselytizer = false
 	return get_next_state()
