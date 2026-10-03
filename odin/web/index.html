@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>How Am I Still Waiting For The Bus?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+	html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+	body { display: flex; align-items: center; justify-content: center; }
+	canvas { width: min(100vw, 100vh * 4 / 3); aspect-ratio: 4 / 3; image-rendering: pixelated; }
+</style>
+</head>
+<body>
+<canvas id="screen" width="256" height="192"></canvas>
+<script src="odin.js"></script>
+<script>
+	const COLUMNS = 32, ROWS = 16, TILE_W = 8, TILE_H = 12;
+	const ctx = document.getElementById("screen").getContext("2d");
+	const font = new Image();
+	const memory = new odin.WasmMemoryInterface();
+
+	font.onload = () => {
+		odin.runWasm("bus.wasm", null, {
+			env: {
+				present: (ptr) => {
+					const cells = new Uint8Array(memory.memory.buffer, ptr, COLUMNS * ROWS);
+					for (let row = 0; row < ROWS; row++) {
+						for (let column = 0; column < COLUMNS; column++) {
+							const tile = cells[row * COLUMNS + column] - 1;
+							ctx.drawImage(font,
+								(tile % 32) * TILE_W, Math.floor(tile / 32) * TILE_H, TILE_W, TILE_H,
+								column * TILE_W, row * TILE_H, TILE_W, TILE_H);
+						}
+					}
+				},
+			},
+		}, memory);
+	};
+	font.src = "CoCoFontSmall.png";
+</script>
+</body>
+</html>
