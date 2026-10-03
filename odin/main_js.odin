@@ -47,3 +47,14 @@ step :: proc(dt: f64) -> (keep_going: bool) {
 	present(&display.cells)
 	return true
 }
+
+// Called from web/index.html with the screen row (0 = top) the player tapped.
+@(export)
+touch_row :: proc "c" (row: i32) {
+	context = runtime.default_context()
+	if row >= 0 && row < ROWS {
+		if command, ok := display.taps[row].?; ok {
+			game_handle_command(command)
+		}
+	}
+}

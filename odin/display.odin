@@ -16,6 +16,8 @@ Display :: struct {
 	cells:  [ROWS][COLUMNS]u8, // row 0 is the top of the screen
 	column: int,
 	row:    int,
+	// Command triggered by tapping each row, set by display_menu_item.
+	taps:   [ROWS]Maybe(Command),
 }
 
 display: Display
@@ -46,6 +48,7 @@ display_clear :: proc(cell: u8 = BLANK_CELL) {
 	}
 	display.column = 0
 	display.row = 0
+	display.taps = {}
 }
 
 display_write_cell :: proc(cell: u8) {
@@ -77,6 +80,7 @@ display_write_line :: proc(text: string, set: Character_Set = .Normal) {
 
 // Draws a numbered menu entry such as "1)WAIT FOR BUS" with the key highlighted.
 display_menu_item :: proc(key: string, label: string) {
+	display.taps[display.row] = Command(int(Command.Zero) + int(key[0] - '0'))
 	display_write(key, .Highlight)
 	display_write_line(label)
 }
