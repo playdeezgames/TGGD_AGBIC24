@@ -2,6 +2,8 @@
 package bus
 
 import "base:runtime"
+import "core:math/rand"
+import "core:time"
 import "core:sys/wasm/js"
 
 foreign import host "env"
@@ -13,6 +15,8 @@ foreign host {
 }
 
 main :: proc() {
+	// The default RNG returns the same sequence every run in the wasm build.
+	rand.reset(u64(time.now()._nsec))
 	js.add_window_event_listener(.Key_Down, nil, on_key_down)
 }
 
