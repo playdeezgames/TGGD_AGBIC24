@@ -51,13 +51,35 @@ display_clear :: proc(cell: u8 = BLANK_CELL) {
 	display.taps = {}
 }
 
+// Moves everything up one row and blanks the bottom row, so overflowing text pushes the oldest lines
+// off the top instead of overwriting the menu at the bottom.
+display_scroll :: proc() {
+	for row in 0 ..< ROWS - 1 {
+		display.cells[row] = display.cells[row + 1]
+		display.taps[row] = display.taps[row + 1]
+	}
+	for &c in display.cells[ROWS - 1] {
+		c = BLANK_CELL
+	}
+	display.taps[ROWS - 1] = nil
+}
+
+// The cursor may sit one row past the bottom after a full screen has been written. Scrolling is
+// deferred until something else is written, so a screen of exactly ROWS lines does not scroll.
+display_ensure_row :: proc() {
+	if display.row >= ROWS {
+		display_scroll()
+		display.row = ROWS - 1
+	}
+}
+
 display_write_cell :: proc(cell: u8) {
+	display_ensure_row()
 	display_set_cell(display.column, display.row, cell)
 	display.column += 1
 	if display.column >= COLUMNS {
 		display.column = 0
-		// TODO: scroll screen (the Defold version just overwrites the last line too)
-		display.row = min(display.row + 1, ROWS - 1)
+		display.row += 1
 	}
 }
 
@@ -80,6 +102,7 @@ display_write_line :: proc(text: string, set: Character_Set = .Normal) {
 
 // Draws a numbered menu entry such as "1)WAIT FOR BUS" with the key highlighted.
 display_menu_item :: proc(key: string, label: string) {
+	display_ensure_row()
 	display.taps[display.row] = Command(int(Command.Zero) + int(key[0] - '0'))
 	display_write(key, .Highlight)
 	display_write_line(label)

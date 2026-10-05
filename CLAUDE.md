@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-"How Am I Still Waiting For The Bus" is a text-mode survival game in Odin, compiled to `js_wasm32` and played in the browser (itch.io). It was originally written in Lua on Defold (December 2024) and rewritten line for line in Odin in October 2026; the Defold project was removed afterwards. The last commit that contains it is `6c5262a`, which is the reference if the original behaviour is ever in question (quirks like hard character-wrapping at 32 columns and hand-padded message strings come from there). The port has since moved past it: the proselytizer, holy water, zombie guts and touch taps exist only in the Odin version.
+"How Am I Still Waiting For The Bus" is a text-mode survival game in Odin, compiled to `js_wasm32` and played in the browser (itch.io). It was originally written in Lua on Defold (December 2024) and rewritten line for line in Odin in October 2026; the Defold project was removed afterwards. The last commit that contains it is `6c5262a`, which is the reference if the original behaviour is ever in question (quirks like hard character-wrapping at 32 columns and hand-padded message strings come from there). The port has since moved past it: the proselytizer, holy water, zombie guts, poison and touch taps exist only in the Odin version.
 
 The repo root holds `shippit.sh`, README, `NOTICE.md`, `TODO.md`, `ITCH_DESCRIPTION.md`, `cover.png`, and the `odin/` directory with all the code.
 
@@ -18,7 +18,7 @@ The repo root holds `shippit.sh`, README, `NOTICE.md`, `TODO.md`, `ITCH_DESCRIPT
 
 One Odin package (`bus`) in `odin/`. Everything is platform independent except `main_js.odin` (`#+build js`), which holds the `step` export, keyboard events (`KeyboardEvent.code` to `Command`), the `touch_row` export, RNG seeding, and the `present` foreign call. `game_test.odin` is `#+build !js`.
 
-- `display.odin`: a 32x16 grid of tile indices, a write cursor (row 0 is the top), and per-row tap commands recorded by `display_menu_item`. Text wraps by character, never by word.
+- `display.odin`: a 32x16 grid of tile indices, a write cursor (row 0 is the top), and per-row tap commands recorded by `display_menu_item`. Text wraps by character, never by word. Writing past the bottom row scrolls the screen up (deferred until the next write, so exactly 16 rows does not scroll), so the menu at the bottom is never overwritten.
 - `data.odin`: the single global `data`, the message log (`add_message`/`clear_messages`), and every action. Actions return the next `State`. `get_next_state` is the router and its order matters: dead, zombie, hippie, vendor, beggar, proselytizer, then in play.
 - `states.odin`: a `draw_*`/`handle_*` pair per `State`; `game_update` and `game_handle_command` dispatch on `current_state`.
 - `encounter.odin` and `foraging.odin`: enum-indexed weight arrays rolled by `pick_weighted` in `rng.odin`.

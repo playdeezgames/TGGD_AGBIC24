@@ -132,7 +132,7 @@ handle_confirm_quit :: proc(command: Command) -> State {
 // Dead
 
 draw_dead :: proc() {
-	display_write_line("YER DEAD!", .Highlight)
+	display_write_line(data.turned_zombie ? "YOU TURNED INTO A ZOMBIE!" : "YER DEAD!", .Highlight)
 	display_write_line(fmt.tprintf("FINAL SCORE: %d", get_final_score()), .Highlight)
 	write_messages()
 	display_write_line(" ")
@@ -203,6 +203,9 @@ draw_inventory :: proc() {
 	if data.beer_bottles > 0 {
 		display_menu_item("4)", "BREAK BEER BOTTLE")
 	}
+	if data.zombie_guts > 0 {
+		display_menu_item("5)", "EAT ZOMBIE GUTS")
+	}
 	display_menu_item("0)", "DONE")
 }
 
@@ -218,6 +221,8 @@ handle_inventory :: proc(command: Command) -> State {
 		if data.flowers > 0 { return smell_flower() }
 	case .Four:
 		if data.beer_bottles > 0 { return break_beer_bottle() }
+	case .Five:
+		if data.zombie_guts > 0 { return eat_zombie_guts() }
 	}
 	return .Inventory
 }
@@ -255,6 +260,9 @@ draw_status :: proc() {
 	write_stat("HEALTH:%d/%d", data.health, data.maximum_health)
 	write_stat("SATIETY: %d/%d", data.satiety, data.maximum_satiety)
 	write_stat("VIRTUE: %d", data.virtue)
+	if data.poison > 0 {
+		write_stat("POISON: %d", data.poison)
+	}
 	write_stat("WEAPON: %s", get_weapon())
 	write_stat("ATTACK STRENGTH: %d", get_attack())
 	write_stat("DEFEND STRENGTH: %d", data.defend)

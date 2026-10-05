@@ -42,6 +42,8 @@ Game_Data :: struct {
 	holy_water:           int,
 	holy_water_price:     int,
 	zombie_guts:          int,
+	poison:               int,
+	turned_zombie:        bool,
 	beer_bottles:         int,
 	broken_beer_bottles:  int,
 	sammich_price:        int,
@@ -109,7 +111,14 @@ perform_wait :: proc() {
 	check_for_encounter()
 }
 
+POISON_ON_EATING_GUTS :: 25
+
 perform_hunger :: proc() {
+	poisoned := data.poison > 0
+	defer if poisoned && is_dead() {
+		data.turned_zombie = true
+	}
+	defer perform_poison()
 	if data.satiety > 0 {
 		add_message("-1 SATIETY")
 		data.satiety -= 1
@@ -119,6 +128,15 @@ perform_hunger :: proc() {
 		add_message("-1 HEALTH")
 		data.health -= 1
 		add_message("HEALTH:%d/%d", data.health, data.maximum_health)
+	}
+}
+
+// Poison costs 1 health and wears off by 1 each turn. Dying with poison in the blood means coming back as a zombie.
+perform_poison :: proc() {
+	if data.poison > 0 && data.health > 0 {
+		data.health -= 1
+		data.poison -= 1
+		add_message("YER POISONED! -1 HEALTH")
 	}
 }
 
@@ -161,6 +179,17 @@ use_bandage :: proc() -> State {
 	data.bandages -= 1
 	data.health = min(data.health + 10, data.maximum_health)
 	add_message("HEALTH: %d/%d", data.health, data.maximum_health)
+	return .In_Play
+}
+
+eat_zombie_guts :: proc() -> State {
+	clear_messages()
+	assert(data.zombie_guts > 0, "the player doesnt have any zombie guts, so how did we get here?")
+	add_message("YOU EAT ZOMBIE GUTS")
+	data.zombie_guts -= 1
+	add_message("-1 ZOMBIE GUTS")
+	data.poison = POISON_ON_EATING_GUTS
+	add_message("YER POISONED!")
 	return .In_Play
 }
 
@@ -256,6 +285,7 @@ counter_attack :: proc() {
 		}
 		data.health = clamp(data.health - roll, 0, data.maximum_health)
 		if is_dead() {
+			data.turned_zombie = data.poison > 0
 			add_message("YER DEAD.")
 		} else {
 			add_message("YER HEALTH: %d/%d", data.health, data.maximum_health)
