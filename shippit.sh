@@ -1,6 +1,6 @@
 #!/bin/bash
 # Builds the Odin js_wasm32 version and pushes it to itch.io as the web channel.
-# (The old Defold deploy script is archived in archive/shippit_defold.sh.)
+# (The old Defold version and its deploy script were removed; they are in git history up to commit 6c5262a.)
 set -e
 cd "$(dirname "$0")"
 
