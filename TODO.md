@@ -4,7 +4,7 @@
 
 - [ ] Zombie guts distract zombies from attacking (the last README idea; guts are collected but do nothing yet)
 - [ ] Play through the proselytizer screen and the holy water fight option in a browser (covered by tests, never watched on screen)
-- [ ] Confirm that the RNG seeding changes outcomes between loads (seeded in `main` as a precaution; not confirmed that the old build repeated itself)
+- [x] Confirm that the RNG seeding changes outcomes between loads (tested: the default RNG already varied per load, so the seed is harmless but was not needed)
 - [x] Update `README.md`, which still listed the proselytizer, holy water and zombie guts as ideas (the ideas list is gone; the remaining one is above)
 
 ## Repo

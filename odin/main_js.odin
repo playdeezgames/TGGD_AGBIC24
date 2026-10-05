@@ -15,7 +15,7 @@ foreign host {
 }
 
 main :: proc() {
-	// The default RNG returns the same sequence every run in the wasm build.
+	// Seed explicitly. The default RNG was observed to vary per page load here as well, so this is belt and braces.
 	rand.reset(u64(time.now()._nsec))
 	js.add_window_event_listener(.Key_Down, nil, on_key_down)
 }
