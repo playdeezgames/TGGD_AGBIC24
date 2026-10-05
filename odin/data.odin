@@ -351,7 +351,7 @@ can_afford_holy_water :: proc() -> bool {
 
 accept_proselytizer :: proc() -> State {
 	clear_messages()
-	add_message("YOU DONATE %d CENTS TO THE CAUSE.", data.holy_water_price)
+	add_message("YOU DONATE TO THE CAUSE.")
 	add_message("-%d CENTS", data.holy_water_price)
 	add_message("+1 HOLY WATER")
 	add_message("MAY IT BLESS YOU AND KEEP YOU.")
@@ -364,7 +364,7 @@ accept_proselytizer :: proc() -> State {
 deny_proselytizer :: proc() -> State {
 	clear_messages()
 	add_message("YOU SAY YER ALREADY SAVED.")
-	add_message("THE PROSELYTIZER LEAVES, PRAYING FOR YOU.")
+	add_message("THE PROSELYTIZER LEAVES,        PRAYING FOR YOU.")
 	data.proselytizer = false
 	return get_next_state()
 }
@@ -372,7 +372,7 @@ deny_proselytizer :: proc() -> State {
 use_holy_water :: proc() -> State {
 	clear_messages()
 	assert(data.holy_water > 0, "the player doesnt have any holy water, so how did we get here?")
-	add_message("YOU SPLASH HOLY WATER ON THE ZOMBIE!")
+	add_message("YOU SPLASH HOLY WATER ON THE    ZOMBIE!")
 	data.holy_water -= 1
 	add_message("-1 HOLY WATER")
 	add_message("THE ZOMBIE EXPLODES!")

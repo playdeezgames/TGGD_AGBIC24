@@ -38,7 +38,7 @@ check_for_encounter :: proc() {
 		add_message("A BEGGAR APPROACHES YOU, ASKING YOU TO SPARE SOME CHANGE.")
 	case .Proselytizer:
 		data.proselytizer = true
-		add_message("A PROSELYTIZER APPROACHES, ASKING IF YOU HAVE HEARD THE GOOD NEWS.")
-		add_message("HOLY WATER IS %d CENTS, AND THE DONATION IS TOTALLY VOLUNTARY!", data.holy_water_price)
+		add_message("A PROSELYTIZER WANTS TO SAVE    YER SOUL.")
+		add_message("HOLY WATER: %d CENT DONATION.", data.holy_water_price)
 	}
 }
