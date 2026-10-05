@@ -188,6 +188,7 @@ eat_zombie_guts :: proc() -> State {
 	add_message("YOU EAT ZOMBIE GUTS")
 	data.zombie_guts -= 1
 	add_message("-1 ZOMBIE GUTS")
+	add_message("WELL, YOU OBVIOUSLY THOUGHT     THAT ONE THROUGH.")
 	data.poison = POISON_ON_EATING_GUTS
 	add_message("YER POISONED!")
 	return .In_Play
