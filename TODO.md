@@ -5,7 +5,7 @@
 - [ ] Zombie guts distract zombies from attacking (the last README idea; guts are collected but do nothing yet)
 - [ ] Play through the proselytizer screen and the holy water fight option in a browser (covered by tests, never watched on screen)
 - [ ] Confirm that the RNG seeding changes outcomes between loads (seeded in `main` as a precaution; not confirmed that the old build repeated itself)
-- [ ] Update `README.md`, which still lists the proselytizer, holy water and zombie guts as ideas
+- [x] Update `README.md`, which still listed the proselytizer, holy water and zombie guts as ideas (the ideas list is gone; the remaining one is above)
 
 ## Repo
 
@@ -13,7 +13,7 @@
 
 ## itch.io page (done by hand)
 
-- [ ] Paste the new `ITCH_DESCRIPTION.md` text into the page (it now includes the font credit)
+- [x] Paste the new `ITCH_DESCRIPTION.md` text into the page (it now includes the font credit)
 - [ ] Remove the old `TGGD_AGBIC24.zip` download from the Defold build
 
 ## Vault
