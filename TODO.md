@@ -17,7 +17,8 @@
 
 ## itch.io page (done by hand)
 
-- [ ] Write a dev log entry for the new update and the rewrite (Defold to Odin, touch controls, proselytizer, holy water, zombie guts, poison)
+- [x] Draft a dev log entry for the new update and the rewrite (`devlog/20261005/devlog.md`, with screenshots)
+- [ ] Ship the poison and snarky guts message (committed, not live), then post the dev log entry on the itch page (upload the screenshots there too)
 - [x] Paste the new `ITCH_DESCRIPTION.md` text into the page (it now includes the font credit)
 - [x] Remove the old `TGGD_AGBIC24.zip` download from the Defold build
 
