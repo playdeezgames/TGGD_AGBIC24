@@ -30,6 +30,7 @@ Game_Data :: struct {
 	zombie_defend:        int,
 	zombie_health:        int,
 	zombie_kills:         int,
+	zombie_distracted:    int,
 	attack:               int,
 	defend:               int,
 	virtue:               int,
@@ -272,7 +273,37 @@ attack :: proc() -> State {
 	return get_next_state()
 }
 
+ZOMBIE_DISTRACTION_TURNS :: 3
+
+spawn_zombie :: proc() {
+	data.zombie_health = 25
+	data.zombie_attack = 10
+	data.zombie_defend = 10
+	data.zombie_distracted = 0
+}
+
+// Zombie guts thrown in a fight: the zombie spends its next few turns eating instead of attacking.
+// The throw uses up the player's turn, so the zombie does not counter-attack for it either.
+throw_zombie_guts :: proc() -> State {
+	clear_messages()
+	assert(data.zombie_guts > 0, "the player doesnt have any zombie guts, so how did we get here?")
+	add_message("YOU THROW ZOMBIE GUTS!")
+	data.zombie_guts -= 1
+	add_message("-1 ZOMBIE GUTS")
+	add_message("THE ZOMBIE STOPS TO EAT         ITS OWN KIND.")
+	data.zombie_distracted = ZOMBIE_DISTRACTION_TURNS
+	return get_next_state()
+}
+
 counter_attack :: proc() {
+	if data.zombie_distracted > 0 {
+		data.zombie_distracted -= 1
+		add_message("THE ZOMBIE IS BUSY EATING.")
+		if data.zombie_distracted == 0 {
+			add_message("THE ZOMBIE FINISHES THE GUTS.")
+		}
+		return
+	}
 	add_message("THE ZOMBIE ATTACKS YOU!")
 	roll := max(0, random_range(1, data.zombie_attack) - random_range(1, data.defend))
 	if roll > 0 {

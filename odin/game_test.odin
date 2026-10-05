@@ -184,3 +184,46 @@ overflowing_text_scrolls_instead_of_overwriting_the_menu :: proc(t: ^testing.T) 
 	testing.expect(t, display.taps[ROWS - 2] == Command.One)
 	testing.expect(t, display.taps[ROWS - 1] == Command.Zero)
 }
+
+@(test)
+thrown_guts_distract_the_zombie_for_three_turns :: proc(t: ^testing.T) {
+	begin_test()
+	defer end_test()
+	new_game()
+	spawn_zombie()
+	data.zombie_attack = 1000
+	data.defend = 1
+	data.zombie_guts = 2
+
+	testing.expect_value(t, throw_zombie_guts(), State.Fight)
+	testing.expect_value(t, data.zombie_guts, 1)
+	testing.expect_value(t, data.zombie_distracted, 3)
+	testing.expect_value(t, data.health, 100)
+
+	// throwing again while distracted restarts the count, it does not add to it
+	throw_zombie_guts()
+	testing.expect_value(t, data.zombie_distracted, 3)
+
+	// three counter-attacks are skipped, and the fourth one lands
+	for _ in 0 ..< 3 {
+		counter_attack()
+		testing.expect_value(t, data.health, 100)
+	}
+	testing.expect_value(t, data.zombie_distracted, 0)
+	for _ in 0 ..< 100 {
+		if data.health < 100 { break }
+		counter_attack()
+	}
+	testing.expect(t, data.health < 100)
+}
+
+@(test)
+a_new_zombie_is_not_distracted :: proc(t: ^testing.T) {
+	begin_test()
+	defer end_test()
+	new_game()
+	data.zombie_distracted = 2
+	spawn_zombie()
+	testing.expect_value(t, data.zombie_distracted, 0)
+	testing.expect_value(t, data.zombie_health, 25)
+}

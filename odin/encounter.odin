@@ -22,9 +22,7 @@ check_for_encounter :: proc() {
 	switch pick_weighted(encounter_weights) {
 	case .Nothing:
 	case .Zombie:
-		data.zombie_health = 25
-		data.zombie_attack = 10
-		data.zombie_defend = 10
+		spawn_zombie()
 		add_message("A ZOMBIE APPROACHES YOU, AND NOWYOU MUST FIGHT!")
 	case .Hippie:
 		data.hippie = true

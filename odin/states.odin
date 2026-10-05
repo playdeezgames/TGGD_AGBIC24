@@ -239,6 +239,9 @@ draw_fight :: proc() {
 	if data.holy_water > 0 {
 		display_menu_item("3)", "USE HOLY WATER!")
 	}
+	if data.zombie_guts > 0 {
+		display_menu_item("4)", "THROW ZOMBIE GUTS!")
+	}
 }
 
 handle_fight :: proc(command: Command) -> State {
@@ -249,6 +252,8 @@ handle_fight :: proc(command: Command) -> State {
 		if data.flowers > 0 { return use_flower() }
 	case .Three:
 		if data.holy_water > 0 { return use_holy_water() }
+	case .Four:
+		if data.zombie_guts > 0 { return throw_zombie_guts() }
 	}
 	return .Fight
 }
