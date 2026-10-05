@@ -16,6 +16,10 @@ The goal is a full rewrite of the Defold/Lua game into Odin targeting `js_wasm32
 - Mapping from Lua: `display.odin` = display_buffer (row 0 is the top; Defold's tilemap is y-up so the Lua cursor started at row 16), `data.odin` = game/data.lua, `states.odin` = all `*_state.lua` (a `draw_*`/`handle_*` pair per `State`), `encounter.odin`/`foraging.odin` = weighted tables (enum-indexed arrays), `rng.odin` = random helpers.
 - Rendering: Odin fills a 32x16 tile-index grid; `web/index.html` implements `present` by blitting 8x12 tiles from `CoCoFontSmall.png` onto a 256x192 canvas (tile index is 1-based, 32 per row; character set 1 = tiles 65..128, set 2 = 1..64).
 
+## Licensing
+
+The repo is MIT, except the font image `CoCoFontSmall.png` (both copies), which was captured from the VCC emulator and is GPL-3.0 (Copyright 2015 Joseph Forgione). See `NOTICE.md`. `odin/web/NOTICE.txt` and `odin/web/GPL-3.0.txt` are copied into the build next to the font, so they ship with the game; keep them there. Keep the credit in `README.md` and `ITCH_DESCRIPTION.md`.
+
 ## Commands (Defold original)
 
 - Develop/run: open the nested `TGGD_AGBIC24/` folder in the Defold editor (Project > Build).
