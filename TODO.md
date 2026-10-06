@@ -2,7 +2,7 @@
 
 ## Tomorrow (2026-10-06)
 
-- [ ] **Ship the zombie guts distraction** (committed and pushed, not live yet): run `./shippit.sh` from the repo root
+- [x] **Ship the zombie guts distraction** (shipped 2026-10-06; itch shows it as Version 8)
 - [x] Write a new dev log entry in `devlog/20261006/` (`devlog.md`, plain text for copy and paste, screenshots in the same folder) about throwing guts at zombies
 - [x] Post the `devlog/20261006` entry on itch and attach its screenshots (posted, retitled "We're... done?"; body matches the file)
 - [x] Paste the updated `ITCH_DESCRIPTION.md` into the page (it now lists the proselytizer, holy water, guts and poison)
