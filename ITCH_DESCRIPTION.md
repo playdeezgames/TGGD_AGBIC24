@@ -9,7 +9,9 @@ In the meantime, you should prolly find some way to occupy yerself.
 - Forage. Litter, loose change, half-eaten sammiches, used bandages. Mostly nothing.
 - Eat the sammiches. Reuse the bandages. Standards are a thing you had once.
 - Meet the neighbourhood. A vendor with sammiches to sell. A beggar who wants yer change. A tree-huggin' hippie who wants yer litter and will pay you in a flower.
-- Fight zombies. They are at the bus stop too. Nobody is surprised.
+- Meet a proselytizer. He wants to save yer soul, and holy water is a 10 cent donation. The donation is totally voluntary.
+- Fight zombies. They are at the bus stop too. Nobody is surprised. Throw holy water on one and it explodes.
+- Deal with the guts. Throw them at the next zombie and it stops to eat. Or eat them yerself, which poisons you. If you die poisoned, you come back as a zombie.
 
 **VIRTUE**
 Give the hippie yer litter and the beggar yer change, and you become a better person, in a way the zombies will find very hard to chew through. Virtue soaks up damage. Yer fists do not. If the beggar likes you, he might give you an empty beer bottle, and an empty beer bottle is a better weapon than yer fists, and a broken one is a better weapon than that. This is the whole moral of the story, and I'm not sorry.

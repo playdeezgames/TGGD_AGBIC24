@@ -3,7 +3,9 @@
 ## Tomorrow (2026-10-06)
 
 - [ ] **Ship the zombie guts distraction** (committed and pushed, not live yet): run `./shippit.sh` from the repo root
-- [ ] Write a new dev log entry in `devlog/20261006/` (`devlog.md`, plain text for copy and paste, screenshots in the same folder) about throwing guts at zombies
+- [x] Write a new dev log entry in `devlog/20261006/` (`devlog.md`, plain text for copy and paste, screenshots in the same folder) about throwing guts at zombies
+- [ ] Post the `devlog/20261006` entry on itch and attach its screenshots (after shipping)
+- [ ] Paste the updated `ITCH_DESCRIPTION.md` into the page (it now lists the proselytizer, holy water, guts and poison)
 
 ## Game
 
@@ -30,4 +32,4 @@
 ## Vault
 
 - [x] Find the author and licence of the CoCo font sheet (VCC, Joseph Forgione, GPL-3.0; credited in the notes)
-- [ ] Update the bus game note when zombie guts get a use (it currently lists that as the next feature)
+- [x] Update the bus game note when zombie guts get a use (done)
