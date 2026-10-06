@@ -4,8 +4,8 @@
 
 - [ ] **Ship the zombie guts distraction** (committed and pushed, not live yet): run `./shippit.sh` from the repo root
 - [x] Write a new dev log entry in `devlog/20261006/` (`devlog.md`, plain text for copy and paste, screenshots in the same folder) about throwing guts at zombies
-- [ ] Post the `devlog/20261006` entry on itch and attach its screenshots (after shipping)
-- [ ] Paste the updated `ITCH_DESCRIPTION.md` into the page (it now lists the proselytizer, holy water, guts and poison)
+- [x] Post the `devlog/20261006` entry on itch and attach its screenshots (posted, retitled "We're... done?"; body matches the file)
+- [x] Paste the updated `ITCH_DESCRIPTION.md` into the page (it now lists the proselytizer, holy water, guts and poison)
 
 ## Game
 
@@ -25,7 +25,7 @@
 ## itch.io page (done by hand)
 
 - [x] Draft a dev log entry for the new update and the rewrite (`devlog/20261005/devlog.md`, with screenshots)
-- [ ] Post the `devlog/20261005` entry on the itch page and attach the screenshots (poison and the snarky message are live; that entry's "What's next" line is about the guts distraction, which ships tomorrow)
+- [x] Post the `devlog/20261005` entry on the itch page and attach the screenshots (poison and the snarky message are live; that entry's "What's next" line is about the guts distraction, which ships tomorrow)
 - [x] Paste the new `ITCH_DESCRIPTION.md` text into the page (it now includes the font credit)
 - [x] Remove the old `TGGD_AGBIC24.zip` download from the Defold build
 
