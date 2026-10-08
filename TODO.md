@@ -23,7 +23,7 @@ The jam line is gone from the title screen and the itch copy. The game is now **
 - [ ] On itch (yours): rename the project and the description headline; change the project URL slug if you want it renamed too (then update the butler target in `shippit.sh`, which still points at `how-am-i-still-waiting-for-the-bus`); remove the jam line from the description; and the December 2024 devlog "Rock and a Hard Place", which says the game was written for the jam
 - [ ] Rename the GitHub repo and the local folder: `TGGD_AGBIC24` is the jam's abbreviation (GitHub redirects the old URL; links in `NOTICE.md`, `ITCH_DESCRIPTION.md` and `odin/web/NOTICE.txt` need the new name)
 - [x] Regenerate `cover.png` (done: the new title screen, new font, 640 by 480; regenerate again if the title screen changes)
-- [ ] Update the vault notes (the game note, Home, Steam evaluation, CoCo font, the jam page) for the new title
+- [x] Update the vault notes for the new title (done: game note renamed, links fixed, jam page removed, CoCo font marked retired, Steam evaluation re-ranked)
 
 ## Font branch (`font-m6x11`, in progress)
 
