@@ -21,7 +21,12 @@ Until then the live itch build stays as it is: the old title, the old font with 
 
 Plan: `docs/STEAM_DEMO_PLAN.md`. Next Fest is not a goal right now (the dates in the plan are a pacing aid only). Nothing gets built until the decisions are answered.
 
-- [ ] Answer the decisions D1 to D10 in section 4 of the plan (the bus, the score, the font, the art, the title clash, Windows builds, audio)
+- [x] Decisions answered October 8, 2026: D1 (small, $4 to $5), D2 (the bus hits you; it is the prestige reset of an incremental), D3 (the score is advancement points that depend on run length), D5 (AI-made store art), D6 (code-synthesized audio), D8 (Windows built on the user's machine), D10 (disclose everything); D4 and D7 were settled earlier
+- [x] D9 (no SDK in the demo), D11 (sanity stat: out for now), Q1 (the road appears when morale is low) and Q2 (all deaths pay the same, the road is not rewarded and triggers an achievement in the full game) answered October 8, 2026
+- [ ] Still open: Q3 (the shape of the points curve), Q4 (the form of automation), the name of the new stat (despair or morale), what raises and lowers it, and where "low" starts
+- [ ] Write the content rules for the road (plan section 9a): the content note wording, the in-game text, whether to add a crisis-line line, and revisit before release
+- [ ] **Deferred until close to a release candidate (the user's call, October 8, 2026): find and price AI tools for the store art** (capsules and key art): commercial-use terms, cost, and how Steam's AI disclosure treats the output (the user chose AI-made art; AI can do the research, the user approves and pays)
+- [ ] Write the incremental design doc (`docs/INCREMENTAL_DESIGN.md`): the road, the points curve, about 8 perks, the unlock list, automation rules, the bestiary
 
 ## Rename and cut the jam ties (October 8, 2026)
 
