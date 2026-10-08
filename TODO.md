@@ -32,7 +32,7 @@ Replaces the GPL font with m6x11 by Daniel Linssen in 10 by 14 cells (screen 320
 - [ ] Merge to `main` when happy, then run `./shippit.sh` (the live itch build still has the GPL font and notice)
 - [ ] After merging, paste the new credit line from `ITCH_DESCRIPTION.md` into the itch page
 - [x] m6x11 terms: the user decided to read "free to use with attribution" broadly (it does not exclude commercial use), so no need to ask the author; keep the credit everywhere
-- [ ] Update the vault notes (CoCo font, the bus game note, the Steam evaluation) once the branch is merged
+- [x] Update the vault notes (CoCo font, the bus game note, the Steam evaluation) once the branch is merged (done)
 - [ ] Regenerate `cover.png` (still a screenshot with the old font) if it is used anywhere
 
 ## Game
