@@ -224,6 +224,7 @@ If checkpoint C or D slips by more than two weeks, **move to June 2027** instead
 5. A **Windows build** of the native client.
 6. **m5x7** (or any replacement font) terms, read from the author's pages, if D4 picks it. The vault's note says a model read them and they should be confirmed.
 7. The **title** (D7) and what in the game comes from the Famicase cover (D5).
+8. **Whether the demo app needs its own $100 fee.** Valve's fee page says $100 "for each new app" and does not say whether a demo counts; the demo page says to click "Add Demo" on the base game and mentions no fee. I believe it is free, but that is not confirmed from Valve's text. Check at the "Add Demo" step, before any payment, or ask Steam support.
 
 ## Related
 
