@@ -12,7 +12,7 @@ The repo root holds `shippit.sh`, README, `NOTICE.md`, `TODO.md`, `ITCH_DESCRIPT
 
 - Build: `odin/build.sh` writes `odin/out/` (`bus.wasm`, `odin.js` from the Odin install, and everything in `odin/web/`). Serve `odin/out` with any static server and open it.
 - Test (native, not js): `cd odin && odin test . -define:ODIN_TEST_THREADS=1`. Single-threaded because tests share the global `data`; each test calls `begin_test`/`end_test` because the runner gives every test its own allocator. The run leaves a stray `odin` binary, which is git-ignored. It is a seeded random playthrough (a fixed seed, with quitting made rare so deaths happen) that must reach every state, plus glyph-mapping and feature checks.
-- Ship (`./shippit.sh`, from the repo root): runs `odin/build.sh`, then `butler push odin/out thegrumpygamedev/how-am-i-still-waiting-for-the-bus:web`. Publishes to itch.io, so only when asked. The itch project slug is still the old `how-am-i-still-waiting-for-the-bus` until the user renames the page; change it here when they do.
+- Ship (`./shippit.sh`, from the repo root): runs `odin/build.sh`, then `butler push odin/out thegrumpygamedev/how-am-i-still-waiting-for-the-bus:web`. Publishes to itch.io, so only when asked. **Ship hold (October 8, 2026): do not ship until the repo is renamed, the new itch page exists, and more Steam-candidacy work is done (see the top of `TODO.md`), even if asked to "commit and push" or to finish a task.** The itch project slug is still the old `how-am-i-still-waiting-for-the-bus` until the user renames the page; change it here when they do.
 
 ## Architecture
 

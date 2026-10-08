@@ -1,5 +1,15 @@
 # TODO
 
+## Ship hold (set October 8, 2026, by the user)
+
+**Do not ship (`./shippit.sh`) again until all three are true.** Nothing here is shipped by default; the user says when.
+
+- [ ] The GitHub repo has its new name (and the local folder)
+- [ ] The new itch page exists
+- [ ] More work has gone into the game's candidacy for Steam (`docs/STEAM_DEMO_PLAN.md`; how much counts as "more" is the user's call)
+
+Until then the live itch build stays as it is: the old title, the old font with its GPL notice, and the old title screen with the jam line. That is a decision, not an oversight.
+
 ## Tomorrow (2026-10-06)
 
 - [x] **Ship the zombie guts distraction** (shipped 2026-10-06; itch shows it as Version 8)
@@ -19,9 +29,19 @@ The jam line is gone from the title screen and the itch copy. The game is now **
 
 - [x] Pick the new title
 - [x] Apply it in the game repo: title screen, `odin/web/index.html`, `odin/web/NOTICE.txt`, `README.md`, `CLAUDE.md`, the plan
-- [ ] Ship it (`./shippit.sh`; the live build still has the old title and the font notice)
-- [ ] On itch (yours): rename the project and the description headline; change the project URL slug if you want it renamed too (then update the butler target in `shippit.sh`, which still points at `how-am-i-still-waiting-for-the-bus`); remove the jam line from the description; and the December 2024 devlog "Rock and a Hard Place", which says the game was written for the jam
-- [ ] Rename the GitHub repo and the local folder: `TGGD_AGBIC24` is the jam's abbreviation (GitHub redirects the old URL; links in `NOTICE.md`, `ITCH_DESCRIPTION.md` and `odin/web/NOTICE.txt` need the new name)
+- [ ] Ship it (held, see the top of this file; ship to the new itch page's target, not the old page)
+- [ ] **Make a new itch page and retire the old one** (the itch steps are yours; I can prepare the files)
+  - [ ] Create the new project: title "Bus Anticipator of SPLORR!!", a new URL slug, `cover.png`, the description from `ITCH_DESCRIPTION.md` (it has no jam line), tags, and an HTML5 upload ticked "played in the browser"
+  - [ ] Point `shippit.sh` at the new butler target (`thegrumpygamedev/<new-slug>:web`) and ship once to upload the build
+  - [ ] Decide which devlog entries to re-post on the new page (`devlog/20261005` and `devlog/20261006` were written for the old title, so check the wording)
+  - [ ] Retire the old page "How Am I Still Waiting For The Bus?": decide how (unpublish it, or leave it up with a note pointing to the new one). It carries your December 2024 devlog "Rock and a Hard Place", which says the game was written for the jam, plus its comments and likes
+  - [ ] Update the vault: the itch URL and slug in the bus game note, and the Shipping note
+- [ ] **Rename the GitHub repo and the local folder** (`TGGD_AGBIC24` is the jam's abbreviation)
+  - [ ] Rename the repo on GitHub (Settings; GitHub redirects the old URL)
+  - [ ] `git remote set-url origin <new url>`, then rename the local folder
+  - [ ] Replace `TGGD_AGBIC24` in the links in `NOTICE.md`, `ITCH_DESCRIPTION.md` and `odin/web/NOTICE.txt` (search the repo for it)
+  - [ ] Claude Code keeps its memory for this project under the old folder name (`~/.claude/projects/-home-yermom-git-TGGD-AGBIC24/memory`, which holds the "yer, never your" rule): copy it to the new folder's project directory after renaming, or it will not be found
+  - [ ] Update the vault: the `repo:` path in the bus game note and any other mention of the folder
 - [x] Regenerate `cover.png` (done: the new title screen, new font, 640 by 480; regenerate again if the title screen changes)
 - [x] Update the vault notes for the new title (done: game note renamed, links fixed, jam page removed, CoCo font marked retired, Steam evaluation re-ranked)
 
@@ -29,7 +49,8 @@ The jam line is gone from the title screen and the itch copy. The game is now **
 
 Replaces the GPL font with m6x11 by Daniel Linssen in 10 by 14 cells (screen 320 by 224). Built and playable on the branch; not merged, not shipped.
 
-- [ ] Merge to `main` when happy, then run `./shippit.sh` (the live itch build still has the GPL font and notice)
+- [x] Merge to `main` (done, `26dbf1c`)
+- [ ] Ship it (held, see the top of this file)
 - [ ] After merging, paste the new credit line from `ITCH_DESCRIPTION.md` into the itch page
 - [x] m6x11 terms: the user decided to read "free to use with attribution" broadly (it does not exclude commercial use), so no need to ask the author; keep the credit everywhere
 - [x] Update the vault notes (CoCo font, the bus game note, the Steam evaluation) once the branch is merged (done)
