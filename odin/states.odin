@@ -52,9 +52,8 @@ write_stat :: proc(format: string, args: ..any) {
 // Title
 
 draw_title :: proc() {
-	display_write_line("HOW AM I STILL WAITING FOR THE  BUS?", .Highlight)
+	display_write_line("BUS ANTICIPATOR OF SPLORR!!", .Highlight)
 	display_write_line("A PRODUCTION OF THEGRUMPYGAMEDEV")
-	display_write_line("FOR A GAME BY ITS COVER 2024")
 	display_write_line("DECEMBER 2024")
 	display_write_line(" ")
 	display_menu_item("1)", "NEW GAME")

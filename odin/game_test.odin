@@ -1,6 +1,7 @@
 #+build !js
 package bus
 
+import "core:math/rand"
 import "core:testing"
 
 // The test runner gives every test its own allocator, so each test must start from (and leave behind)
@@ -18,8 +19,11 @@ end_test :: proc() {
 
 @(test)
 random_playthroughs_never_crash :: proc(t: ^testing.T) {
-	commands := [?]Command{.Zero, .One, .Two, .Three, .Four, .Five}
+	// Quitting is rare in the mix on purpose: with a flat 1 in 6 chance of opening the quit prompt, a
+	// seed in about 8 never got a single game to end in death within 200 games. A fixed seed makes it repeatable.
+	commands := [?]Command{.Zero, .One, .One, .One, .Two, .Two, .Two, .Three, .Four, .Five}
 	seen: [State]bool
+	rand.reset(2026_10_08)
 	begin_test()
 	defer end_test()
 	for _ in 0 ..< 200 {

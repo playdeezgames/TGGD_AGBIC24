@@ -20,7 +20,7 @@ Give the hippie yer litter and the beggar yer change, and you become a better pe
 Press the number next to the thing you want to do. On a phone, tap the line. That's it. That's the interface. There's also a quit option, but where would you go?
 
 **ABOUT**
-A metaphor for a terminal that looks like a TRS-80 Color Computer. Made for A Game By Its Cover 2024 (December 2024), but never officially entered, because I could not get the original artist's permission. Originally written in Lua on Defold. For this release it was rewritten from scratch in Odin and compiled to WebAssembly, so it runs in yer browser, and the font and the colors are the same as ever.
+A metaphor for a terminal that looks like a TRS-80 Color Computer. First written in Lua on Defold in December 2024. For this release it was rewritten from scratch in Odin and compiled to WebAssembly, so it runs in yer browser, and the font and the colors are the same as ever.
 
 **CREDITS**
 Font: m6x11 by Daniel Linssen (managore), https://managore.itch.io/m6x11, free to use with attribution. The source is at https://github.com/playdeezgames/TGGD_AGBIC24 and is MIT.

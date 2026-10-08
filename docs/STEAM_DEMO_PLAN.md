@@ -1,4 +1,4 @@
-# Steam demo plan: How Am I Still Waiting For The Bus?
+# Steam demo plan: Bus Anticipator of SPLORR!!
 
 Status: **plan only. Nothing in this document has been built or started.** Drafted October 8, 2026. Each phase below ends at an approval gate, the same way the Murder Hobo port was run (`docs/PORT_PLAN.md` in that repo): decide first, then build a phase, then the user plays it, then the next phase.
 
@@ -67,9 +67,9 @@ None of these have been answered. "Recommended" is my suggestion, not a decision
 | D2 | **The bus.** The central joke is that it never comes. A paid game needs structure around that joke. (The vault says to ask before touching it.) | **A.** The bus never comes; structure comes from days, score and unlocks. **B.** A plus **near-misses**: a wrong bus that passes, a posted timetable that lies, a sign that says "SOON", on fixed days. **C.** B plus a real ending in the full game, which can be earned by a long run (the bus arrives and does not stop, or you board and it is the zombie bus). | **B** for the demo. Decide C later. |
 | D3 | **A real score.** The final score is a stub that always returns 0, and the vault calls that the joke. | Keep 0 / **longest wait** (minutes, days) as the score and the record / a points formula. | Longest wait. "0" can stay as the title-screen joke ("BEST WAIT: 0 MINUTES" before the first run). |
 | D4 | **Font.** **Decided October 8, 2026: m6x11 (Daniel Linssen) in 10 by 14 cells, built on the `font-m6x11` branch; the user reads the author's "free to use with attribution" broadly, since it does not exclude commercial use.** The CoCo font image was GPL-3.0 (copied from the VCC emulator), which is a hard stop for a paid closed release. | **(a)** Redraw it as an original 8 by 12 font, with a generated tile sheet. **(b)** Use m5x7 (CC0, already used in Murder Hobo) in the same grid. **(c)** Keep the GPL font and release the whole game as GPL (open source on Steam). | (a) or (b). The "ROM font 8x8" sheet is also unsuitable: it has no licence, and it is a 1999 screenshot of the DOS system font. |
-| D5 | **Art.** The vault says the original cover art was never cleared. The repo's `cover.png` is just a screenshot of the title screen, so I could not tell what in the game comes from the Famicase cover. | What, if anything, in the title, words or look comes from that cover? Who makes the capsule art: the user, a commission, or an in-engine render? | Tell me what derives from the cover; I will plan the clearing or the rename. Capsule art made from in-engine renders, with a hand-drawn key image if the user wants. |
+| D5 | **Art and the jam.** **Decided October 8, 2026: cut every tie to the jam and to the art the game was based on.** The jam line is gone from the title screen and the itch copy, and the game is being renamed (D7). Still open: who makes the capsule art (the user, a commission, or an in-engine render). | Capsule art: user / commission / in-engine render. | Capsule art made from in-engine renders, with a hand-drawn key image if the user wants. |
 | D6 | **Audio.** None today. | **Code-synthesized chiptune and effects** (original, no licence) / commission / AI-generated (needs disclosure and unclear terms). | Code-synthesized, written by me from tables and approved by the user. |
-| D7 | **The title.** The jam's own submissions page lists *another* game called "How am I Still Waiting for the Bus?" by SweetHeart Squad, a browser survival game. | Keep the title / add a subtitle or "of SPLORR!!" / rename for Steam. | Check that game; use "of SPLORR!!" or a subtitle if it is live or related. This needs a decision before store assets are made. |
+| D7 | **The title.** **Decided October 8, 2026: rename.** The old title is the name of the art the game was based on, and another game, "How am I Still Waiting for the Bus?" by SweetHeart Squad, has the same name. **New title: *Bus Anticipator of SPLORR!!*** (the user's own, chosen October 8, 2026). | Done in the game; the itch page, repo name and store assets follow. | Done. |
 | D8 | **Platforms and builds.** The Murder Hobo note says Odin cannot cross-build Windows from the user's Linux machine. | Windows plus Linux (plus Steam Deck, which runs Linux) / add Mac. Windows built on a Windows machine, in GitHub Actions, or by a Windows toolchain. | Windows plus Linux. Does the user have a Windows machine? |
 | D9 | **Steamworks in the demo.** | No SDK at all (launch from Steam, Auto-Cloud for saves, no achievements) / full SDK. | No SDK for the demo. Achievements arrive with the full game. |
 | D10 | **AI disclosure wording** for the store page content survey. | Disclose code, text and any music generated with AI / only what Steam requires. | Disclose everything, as the user's public stance says. |
@@ -88,7 +88,7 @@ Answer D1 to D10. Output: this document updated with the answers, and `TODO.md` 
 Things that make a paid release impossible if left alone, and are cheap now.
 
 1. **Replace the GPL font** (D4): new sheet in the same tile layout, glyph mapping test kept, `NOTICE.md`, `README.md` credits, `ITCH_DESCRIPTION.md` and the devlog credit lines updated, `odin/web/GPL-3.0.txt` removed from the build. The itch version can ship the new font too, so there is one codebase.
-2. **Remove the jam claim.** The title screen says "FOR A GAME BY ITS COVER 2024". The game was never entered; decide what the title screen says instead (D5).
+2. **Remove the jam claim.** Done on October 8, 2026: the title screen and the itch copy no longer mention the jam. Still to do: the rename (D7), including the repo name (`TGGD_AGBIC24` carries the jam's abbreviation).
 3. **Title and IP check** (D7).
 4. **Licence ledger.** One page (`docs/LICENCES.md`) listing every font, sound, word-source and tool with its licence. Starts nearly empty; every later phase adds to it.
 
@@ -211,7 +211,7 @@ If checkpoint C or D slips by more than two weeks, **move to June 2027** instead
 | **Scope creep** | There are many good ideas here. | Content freeze January 3, and a cut list from the phase 3 gate. |
 | **Windows builds** | Odin cannot cross-build Windows from this machine (per the vault). | Prove a Windows build in phase 1 or 5, before building features on top. |
 | **Licence gaps** | One missed font or sound means a store takedown. | The ledger, started in phase 1 and checked before every release. |
-| **Title clash** | Another game with the same name appears on the jam page. | D7. |
+| **Title clash** | Another game has the same name. | Resolved by the rename (D7). |
 | **The AI stance** | The vault notes it costs some sales and reviews. | Disclose plainly (D10); the demo is the best answer to "is it any good". |
 | **Competing with Kordanor's Cabal** | The vault ranks it as the front runner and pays off a long debt. | D1. |
 
@@ -223,7 +223,7 @@ If checkpoint C or D slips by more than two weeks, **move to June 2027** instead
 4. **Odin and Steamworks** bindings, for the full game's achievements.
 5. A **Windows build** of the native client.
 6. **m5x7** (or any replacement font) terms, read from the author's pages, if D4 picks it. The vault's note says a model read them and they should be confirmed.
-7. The **title** (D7) and what in the game comes from the Famicase cover (D5).
+7. That the new title (D7) is not already in use on Steam and itch.io.
 8. **Whether the demo app needs its own $100 fee.** Valve's fee page says $100 "for each new app" and does not say whether a demo counts; the demo page says to click "Add Demo" on the base game and mentions no fee. I believe it is free, but that is not confirmed from Valve's text. Check at the "Add Demo" step, before any payment, or ask Steam support.
 
 ## Related
