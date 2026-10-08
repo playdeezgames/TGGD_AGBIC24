@@ -17,6 +17,15 @@ Until then the live itch build stays as it is: the old title, the old font with 
 - [x] Post the `devlog/20261006` entry on itch and attach its screenshots (posted, retitled "We're... done?"; body matches the file)
 - [x] Paste the updated `ITCH_DESCRIPTION.md` into the page (it now lists the proselytizer, holy water, guts and poison)
 
+## Phase 1: clear the gates (started October 8, 2026)
+
+- [x] Replace the GPL font (m6x11, merged to `main`)
+- [x] Remove the jam claim from the title screen and the itch copy
+- [x] Licence ledger started: `docs/LICENCES.md`; Odin's licence notice now ships in `NOTICE.txt`
+- [ ] Title check by hand: search itch.io for "Bus Anticipator" (the search page could not be read by the tool; Steam and the web showed nothing), and search for trademarks
+- [ ] Rename the repo and the local folder (listed in the rename section below)
+- [ ] The new itch page (listed below)
+
 ## Steam demo (planned, nothing started)
 
 Plan: `docs/STEAM_DEMO_PLAN.md`. Next Fest is not a goal right now (the dates in the plan are a pacing aid only). Nothing gets built until the decisions are answered.

@@ -111,12 +111,12 @@ Answer D1 to D10. Output: this document updated with the answers, and `TODO.md` 
 
 Things that make a paid release impossible if left alone, and are cheap now.
 
-1. **Replace the GPL font** (D4): new sheet in the same tile layout, glyph mapping test kept, `NOTICE.md`, `README.md` credits, `ITCH_DESCRIPTION.md` and the devlog credit lines updated, `odin/web/GPL-3.0.txt` removed from the build. The itch version can ship the new font too, so there is one codebase.
+1. **Replace the GPL font** (D4). **Done October 8, 2026** (commit `26dbf1c`): m6x11 in 10 by 14 cells. New sheet in the same tile layout, glyph mapping test kept, `NOTICE.md`, `README.md` credits, `ITCH_DESCRIPTION.md` and the devlog credit lines updated, `odin/web/GPL-3.0.txt` removed from the build. The itch version can ship the new font too, so there is one codebase.
 2. **Remove the jam claim.** Done on October 8, 2026: the title screen and the itch copy no longer mention the jam. Still to do: the rename (D7), including the repo name (`TGGD_AGBIC24` carries the jam's abbreviation).
-3. **Title and IP check** (D7).
-4. **Licence ledger.** One page (`docs/LICENCES.md`) listing every font, sound, word-source and tool with its licence. Starts nearly empty; every later phase adds to it.
+3. **Title and IP check** (D7). **Mostly done October 8, 2026:** the title is the user's own, **Bus Anticipator of SPLORR!!**. Steam's own search and web searches find no game of that name. Still by hand: itch.io's search (the tool could not read it) and a trademark search.
+4. **Licence ledger.** **Started October 8, 2026:** `docs/LICENCES.md` lists everything that ships and everything used to make it, with its licence and where the notice is. Odin's licence notice is now in the shipped `NOTICE.txt`. Every later phase adds its rows before it is called done.
 
-**Exit:** a build with only original or CC0 material, and a ledger that proves it.
+**Exit:** a build with only original material or material under licences the user has accepted (m6x11, read broadly), and a ledger that proves it. **Phase 1 is complete once the by-hand title checks and the repo rename are done.**
 
 ### Phase 2: make a run a game (L, the heart of the plan)
 

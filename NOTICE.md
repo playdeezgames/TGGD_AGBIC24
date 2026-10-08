@@ -8,6 +8,10 @@ The author's page does not address commercial use, modification or redistributio
 
 The rest of this repository is under the MIT license (see [`LICENSE`](LICENSE)).
 
+## Odin
+
+The game is compiled with the [Odin](https://odin-lang.org) compiler. `bus.wasm` contains code from Odin's base and core libraries, and `odin.js` is Odin's browser runtime, copied unchanged into the build. Odin's licence (Copyright 2016-2025 Ginger Bill) permits use in commercial products and redistribution, and asks that its notice is not removed; the full text is in `odin/web/NOTICE.txt`, which ships with the build. An acknowledgement is appreciated but not required.
+
 ## History
 
 Before October 2026 the game used a font image captured from the VCC emulator (Copyright 2015 Joseph Forgione, GPL-3.0-or-later), shipped with a GPL-3.0 notice. It was replaced by m6x11 on the `font-m6x11` branch and is only in git history now (last present on `main` at commit `07906f7`).
