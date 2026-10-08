@@ -2,13 +2,9 @@ How Am I Still Waiting For The Bus?
 
 Font credit
 -----------
-The bitmap font (CoCoFontSmall.png) was captured from a screenshot of the VCC
-(Virtual Color Computer) emulator, https://github.com/VCCE/VCC. VCC's character
-set data (cc2font.h, cc3font.h) is Copyright 2015 by Joseph Forgione and is
-licensed under the GNU General Public License, version 3 or later.
+The text is drawn in m6x11 by Daniel Linssen (managore), https://managore.itch.io/m6x11,
+which is free to use with attribution. font.png is that font rendered unmodified into a tile sheet.
 
-CoCoFontSmall.png is therefore distributed under the GNU General Public License,
-version 3 (full text in GPL-3.0.txt). The rest of this project is under the MIT
-license (see LICENSE in the source repository).
+The rest of this project is under the MIT license (see LICENSE in the source repository).
 
 Source: https://github.com/playdeezgames/TGGD_AGBIC24

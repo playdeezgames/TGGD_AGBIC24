@@ -13,6 +13,16 @@ Plan: `docs/STEAM_DEMO_PLAN.md`. Next Fest is not a goal right now (the dates in
 
 - [ ] Answer the decisions D1 to D10 in section 4 of the plan (the bus, the score, the font, the art, the title clash, Windows builds, audio)
 
+## Font branch (`font-m6x11`, in progress)
+
+Replaces the GPL font with m6x11 by Daniel Linssen in 10 by 14 cells (screen 320 by 224). Built and playable on the branch; not merged, not shipped.
+
+- [ ] Merge to `main` when happy, then run `./shippit.sh` (the live itch build still has the GPL font and notice)
+- [ ] After merging, paste the new credit line from `ITCH_DESCRIPTION.md` into the itch page
+- [x] m6x11 terms: the user decided to read "free to use with attribution" broadly (it does not exclude commercial use), so no need to ask the author; keep the credit everywhere
+- [ ] Update the vault notes (CoCo font, the bus game note, the Steam evaluation) once the branch is merged
+- [ ] Regenerate `cover.png` (still a screenshot with the old font) if it is used anywhere
+
 ## Game
 
 - [x] Zombie guts distract zombies from attacking (throw them in a fight, key 4: no counter-attack that turn, then the zombie is busy for 3 more turns; built and watched in a browser)

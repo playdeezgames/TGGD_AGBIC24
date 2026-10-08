@@ -23,6 +23,6 @@ Press the number next to the thing you want to do. On a phone, tap the line. Tha
 A metaphor for a terminal that looks like a TRS-80 Color Computer. Made for A Game By Its Cover 2024 (December 2024), but never officially entered, because I could not get the original artist's permission. Originally written in Lua on Defold. For this release it was rewritten from scratch in Odin and compiled to WebAssembly, so it runs in yer browser, and the font and the colors are the same as ever.
 
 **CREDITS**
-Font: captured from the VCC (Virtual Color Computer) emulator, https://github.com/VCCE/VCC, whose character set is Copyright 2015 Joseph Forgione and licensed GPL-3.0 or later. The font image is shared under the GPL-3.0, and the source is at https://github.com/playdeezgames/TGGD_AGBIC24. The rest is MIT.
+Font: m6x11 by Daniel Linssen (managore), https://managore.itch.io/m6x11, free to use with attribution. The source is at https://github.com/playdeezgames/TGGD_AGBIC24 and is MIT.
 
 Thanks for engaging with my metaphor.

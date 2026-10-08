@@ -3,7 +3,7 @@ package bus
 COLUMNS :: 32
 ROWS    :: 16
 
-// Tile indices are 1-based into CoCoFontSmall.png (32 tiles per row, 8x12 px each).
+// Tile indices are 1-based into web/font.png (32 tiles per row, 10x14 px each; see tools/make_font_sheet.py).
 // Character set 1 is the normal text (tiles 65..128), set 2 the highlighted text (tiles 1..64).
 Character_Set :: enum {
 	Normal    = 1,

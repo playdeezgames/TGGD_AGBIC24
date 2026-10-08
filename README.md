@@ -2,4 +2,4 @@
 
 ## Credits
 
-- Font: captured from the [VCC (Virtual Color Computer)](https://github.com/VCCE/VCC) emulator, whose character set is Copyright 2015 Joseph Forgione, GPL-3.0-or-later. The font image is distributed under the GPL-3.0; see [NOTICE.md](NOTICE.md). The rest of the project is MIT ([LICENSE](LICENSE)).
+- Font: [m6x11](https://managore.itch.io/m6x11) by Daniel Linssen (managore), free to use with attribution; see [NOTICE.md](NOTICE.md). The rest of the project is MIT ([LICENSE](LICENSE)).

@@ -2,8 +2,12 @@
 
 ## Font
 
-`CoCoFontSmall.png` (in `odin/web/`, and in the original Defold version in the git history up to commit `6c5262a`) was captured from a screenshot of the [VCC (Virtual Color Computer)](https://github.com/VCCE/VCC) emulator. VCC's character set data (`cc2font.h`, `cc3font.h`) is Copyright 2015 by Joseph Forgione and is licensed under the GNU General Public License, version 3 or later.
+The game's text is drawn in **m6x11** by **Daniel Linssen (managore)**, <https://managore.itch.io/m6x11>, which the author's page says is "free to use with attribution". `odin/web/font.png` is that font rendered, unmodified, into a tile sheet by `odin/tools/make_font_sheet.py` (the script needs `m6x11.ttf`, which is not kept in this repository; download it from the author's page).
 
-Those font images are therefore distributed under the **GPL-3.0**; the full text is in [`odin/web/GPL-3.0.txt`](odin/web/GPL-3.0.txt). The rest of this repository is under the MIT license (see [`LICENSE`](LICENSE)).
+The author's page does not address commercial use, modification or redistribution. The project reads "free to use with attribution" broadly: it does not exclude commercial use, so the font is used here, including in any paid release, with the credit above. (The glyphs are rendered unmodified.)
 
-The web build copies `NOTICE.txt` and `GPL-3.0.txt` from `odin/web/` next to the font, so they ship with the game.
+The rest of this repository is under the MIT license (see [`LICENSE`](LICENSE)).
+
+## History
+
+Before October 2026 the game used a font image captured from the VCC emulator (Copyright 2015 Joseph Forgione, GPL-3.0-or-later), shipped with a GPL-3.0 notice. It was replaced by m6x11 on the `font-m6x11` branch and is only in git history now (last present on `main` at commit `07906f7`).

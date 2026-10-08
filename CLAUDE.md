@@ -22,9 +22,9 @@ One Odin package (`bus`) in `odin/`. Everything is platform independent except `
 - `data.odin`: the single global `data`, the message log (`add_message`/`clear_messages`), and every action. Actions return the next `State`. `get_next_state` is the router and its order matters: dead, zombie, hippie, vendor, beggar, proselytizer, then in play.
 - `states.odin`: a `draw_*`/`handle_*` pair per `State`; `game_update` and `game_handle_command` dispatch on `current_state`.
 - `encounter.odin` and `foraging.odin`: enum-indexed weight arrays rolled by `pick_weighted` in `rng.odin`.
-- `web/index.html`: implements `present` by blitting 8x12 tiles from `CoCoFontSmall.png` onto a 256x192 canvas (tile index is 1-based, 32 per row; character set 1 is tiles 65..128, set 2 is 1..64), and turns taps on the canvas into `touch_row` calls.
+- `web/index.html`: implements `present` by blitting 10x14 tiles from `font.png` onto a 320x224 canvas (32 columns by 16 rows) (tile index is 1-based, 32 per row; character set 1 is tiles 65..128, set 2 is 1..64), and turns taps on the canvas into `touch_row` calls.
 - Input is entirely numbered menus ("1) WAIT FOR BUS"). Keys 0 to 9 and the numpad are bound; only 0 to 4 are used.
 
 ## Licensing
 
-The repo is MIT, except the font image `CoCoFontSmall.png`, which was captured from the VCC emulator and is GPL-3.0 (Copyright 2015 Joseph Forgione). See `NOTICE.md`. `odin/web/NOTICE.txt` and `odin/web/GPL-3.0.txt` are copied into the build next to the font, so they ship with the game; keep them there. Keep the credit in `README.md` and `ITCH_DESCRIPTION.md`.
+The repo is MIT. The text font is m6x11 by Daniel Linssen (managore), "free to use with attribution", rendered unmodified into `odin/web/font.png` by `odin/tools/make_font_sheet.py` (the TTF is not kept in the repo). The author's page does not address commercial use or modification; the user's decision is to read "free to use with attribution" broadly, since it does not exclude commercial use. Always keep the credit. See `NOTICE.md`. `odin/web/NOTICE.txt` is copied into the build next to the font, so it ships with the game; keep it there. Keep the credit in `README.md` and `ITCH_DESCRIPTION.md`. (Until October 2026 the font was a GPL-3.0 image from the VCC emulator; it is in git history up to `07906f7`.)

@@ -7,14 +7,14 @@
 <style>
 	html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
 	body { display: flex; align-items: center; justify-content: center; }
-	canvas { width: min(100vw, 100vh * 4 / 3); aspect-ratio: 4 / 3; image-rendering: pixelated; touch-action: none; }
+	canvas { width: min(100vw, 100vh * 10 / 7); aspect-ratio: 10 / 7; image-rendering: pixelated; touch-action: none; }
 </style>
 </head>
 <body>
-<canvas id="screen" width="256" height="192"></canvas>
+<canvas id="screen" width="320" height="224"></canvas>
 <script src="odin.js"></script>
 <script>
-	const COLUMNS = 32, ROWS = 16, TILE_W = 8, TILE_H = 12;
+	const COLUMNS = 32, ROWS = 16, TILE_W = 10, TILE_H = 14;
 	const ctx = document.getElementById("screen").getContext("2d");
 	const font = new Image();
 	const memory = new odin.WasmMemoryInterface();
@@ -49,7 +49,7 @@
 			if (memory.exports) { wasm = memory.exports; clearInterval(wait); }
 		}, 50);
 	};
-	font.src = "CoCoFontSmall.png";
+	font.src = "font.png";
 </script>
 </body>
 </html>
