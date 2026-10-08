@@ -52,7 +52,7 @@ A working definition for this game (edit it):
 - **A demo is 45 to 60 minutes of play across four to six runs,** not one long run. At 3 to 5 seconds a decision, that is about 600 to 1,200 turns in total. Early runs end in a few minutes and bank points; by the fourth or fifth run, perks and automation carry the player to **day 3 or beyond** (about 860 turns in one run). A typical first run today is about 100 turns, so the early game stays short and the later runs are about nine times as long.
 - **Each day is different.** Day 1 teaches, day 2 turns the screws, day 3 has a set piece. The three days are not the same loop three times.
 - **There is a reason to play again.** Every run ends in the road (or a zombie), pays advancement points, and the next run starts differently: a perk, an unlock, an automation rule, a bestiary entry.
-- **It saves.** Close the window, come back, continue.
+- **It saves the profile.** Points, perks, unlocks, rules and the journal survive closing the window. A run in progress is **not** saved (decided October 8, 2026: runs are short, so it would add work and bugs for little).
 - **It looks and sounds like a product:** native Windows and Linux builds, a 16:9 window that fills the screen, sound and music, a title screen, options, a credits screen, controller support.
 - **It has a clean paper trail:** no GPL font, no uncleared art, every sound and word source recorded, AI use disclosed.
 - **It does not give away the joke.** The pillars in section 9 hold.
@@ -83,7 +83,7 @@ Target sizes to confirm (decision D1): **demo 45 to 60 minutes; full game 3 to 5
 
 ## 4. Decisions needed before building (the user's)
 
-Every decision D1 to D11 has an answer (October 8, 2026). Still open are the design questions **Q3** (the points curve) and **Q4** (the form of automation), the morale stat's design, and the name of the stat. "Recommended" is my suggestion where nothing is decided.
+Every decision D1 to D11 has an answer (October 8, 2026). Q3 (the points curve: diminishing returns) and the stat's name (**MORALE**, higher is better) are decided, helping people lifts it by 3, and saving is between runs only. Q4 is decided too: four automation rules, which never fight and never press the road; automated turns count like manual ones; low morale is flavour only. What remains open is small: the fifth rule, tuning every number with the simulator, and the road's text. The design is in `docs/INCREMENTAL_DESIGN.md`. "Recommended" is my suggestion where nothing is decided.
 
 | # | Question | Options | Recommended |
 | --- | --- | --- | --- |
