@@ -7,6 +7,12 @@
 - [x] Post the `devlog/20261006` entry on itch and attach its screenshots (posted, retitled "We're... done?"; body matches the file)
 - [x] Paste the updated `ITCH_DESCRIPTION.md` into the page (it now lists the proselytizer, holy water, guts and poison)
 
+## Steam demo (planned, nothing started)
+
+Plan: `docs/STEAM_DEMO_PLAN.md`. Next Fest is not a goal right now (the dates in the plan are a pacing aid only). Nothing gets built until the decisions are answered.
+
+- [ ] Answer the decisions D1 to D10 in section 4 of the plan (the bus, the score, the font, the art, the title clash, Windows builds, audio)
+
 ## Game
 
 - [x] Zombie guts distract zombies from attacking (throw them in a fight, key 4: no counter-attack that turn, then the zombie is busy for 3 more turns; built and watched in a browser)
