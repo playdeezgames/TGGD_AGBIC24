@@ -71,7 +71,7 @@ Target sizes to confirm (decision D1): **demo 45 to 60 minutes; full game 3 to 5
 
 **Not verified (secondary sources only; confirm before relying on them):**
 
-- **AI disclosure.** News coverage of Valve's current rules says developers declare *pre-generated* AI content that ships to players (art, voice, and LLM-written text count) and *live-generated* AI content, and no longer need to report AI "efficiency tools" used behind the scenes. By that reading, AI-written *code* is exempt but AI-written *game text and music* are not. The user's own public stance is to disclose everything, so plan to.
+- **AI disclosure (corrected October 9, 2026).** Valve's content survey has a generative-AI section with *pre-generated* content (made with AI help during development and shipped to players) and *live-generated* content (made while the game runs, which also needs a description of guardrails). Earlier text here said AI-written *code* is exempt as an "efficiency tool". **That was wrong for this project: the user's ruling is that code written primarily with generative AI is disclosed too.** Disclose the code, AI-drafted text and any AI-made art or sound. Valve's wording on code varies between versions of its page, so read the live survey form before filling it in. See the vault page `Tech/Steam release.md`.
 - **Steam Auto-Cloud** (cloud saves that need no Steamworks code, set up by pointing Steam at the save folder) exists, as far as I know. Confirm in the Steamworks docs.
 - **An Odin binding for the Steamworks SDK** (needed only for achievements and similar). Not needed for the demo.
 
